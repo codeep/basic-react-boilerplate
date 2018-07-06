@@ -1,0 +1,64 @@
+
+<div class="modal-dialog" role="document">
+	<div class="modal-content">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+			<h4 class="modal-title" id="myModalLabel">Modal title</h4>
+		</div>
+		<div class="modal-body">
+			{{ contact_form.name}}
+			{{ contact_phone_formset.management_form }}
+			<ul class = 'basic'>
+			{% for form in contact_phone_formset.forms %}
+				<li class = 'formset-item formset-add-item' data-prefix = {{contact_phone_formset.prefix}}>
+				{# Include the hidden fields in the form #}
+				{% for hidden in form.hidden_fields %}
+					{{ hidden }}
+				{% endfor %}
+				{{ field.errors.as_ul }}
+					<div class = 'zeon-row'>
+						<div class = 'zeon-col'>{{form.contact_type}}</div>
+						<div class = 'zeon-col'>{{form.value}}</div>
+						{% if not form.pk %} 
+						<div class = 'zeon-col formset-mark-deleted'>
+							{{form.DELETE}}
+							<i class="fa fa-minus-circle" aria-hidden="true" title="{% trans 'Delete contact' %}" data-toggle="tooltip" data-head="{% trans 'Delete contact' %}"></i>
+						</div>
+						{% endif %}
+					</div>
+					<span class = 'formset-undo-deleted' role = "link" aria-label="{% trans 'Cancel' %}">{% trans 'Cancel' %}</span>
+				</li>
+			{% endfor %}
+			</ul>
+			{{ contact_email_formset.management_form }}
+			<ul class = 'basic'>
+			{% for form in contact_email_formset.forms %}
+				<li class = 'formset-item formset-add-item' data-prefix = {{contact_email_formset.prefix}}>
+				{# Include the hidden fields in the form #}
+				{% for hidden in form.hidden_fields %}
+					{{ hidden }}
+				{% endfor %}
+				{{ field.errors.as_ul }}
+					<div class = 'zeon-row'>
+						<div class = 'zeon-col'>{{form.contact_type}}</div>
+						<div class = 'zeon-col'>{{form.value}}</div>
+						{% if not forloop.last %}
+						<div class = 'zeon-col formset-mark-deleted'>
+							{{form.DELETE}}
+							<i class="fa fa-minus-circle" aria-hidden="true" title="{% trans 'Delete contact' %}" data-toggle="tooltip" data-head="{% trans 'Delete contact' %}"></i>
+						</div>
+						{% endif %}
+					</div>
+					<span class = 'formset-undo-deleted' role = "link" aria-label="{% trans 'Cancel' %}">{% trans 'Cancel' %}</span>
+				</li>
+			{% endfor %}
+			</ul>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">{%trans 'Cancel' %}</button>
+			<button id = '_create_contact' type="submit" class="btn btn-success _has-spinner" data-loading-text="<i class='fa fa-spinner fa-spin'></i> {% trans 'Saving' %}">
+				{%trans 'Save' %}
+			</button>
+		</div>
+	</div>
+</div>

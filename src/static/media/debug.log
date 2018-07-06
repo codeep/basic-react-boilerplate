@@ -1,0 +1,12 @@
+(0.075) SELECT @@SQL_AUTO_IS_NULL; args=None
+(0.068) SELECT VERSION(); args=None
+(0.072) SELECT @@SQL_AUTO_IS_NULL; args=None
+(0.060) SELECT VERSION(); args=None
+(0.060) SHOW FULL TABLES; args=None
+(0.070) SELECT `django_migrations`.`app`, `django_migrations`.`name` FROM `django_migrations`; args=()
+(0.070) SHOW FULL TABLES; args=None
+(0.070) SELECT `django_migrations`.`app`, `django_migrations`.`name` FROM `django_migrations`; args=()
+(0.080) SELECT @@SQL_AUTO_IS_NULL; args=None
+(0.070) SELECT VERSION(); args=None
+(0.080) SHOW FULL TABLES; args=None
+(0.070) SELECT `django_migrations`.`app`, `django_migrations`.`name` FROM `django_migrations`; args=()
