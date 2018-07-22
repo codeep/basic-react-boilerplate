@@ -1,0 +1,925 @@
+/* body,
+.nav-sidebar {
+    min-height: 768px;
+}
+
+.message-sidebar,
+.list-sidebar {
+    min-height: 688px;
+}
+
+.list-sidebar.list-sidebar--info {
+    min-height: 699px;
+}
+
+.calendar-list .record-group--for-contacts {
+    min-height: 581px;
+}
+
+.call-log-sidebar__main-box {
+    min-height: 628px;
+}
+
+.log-sidebar--home {
+    min-width: 899px;
+} */
+
+@media all and ( max-height: 970px ) {
+
+    .notification-line {
+        left: 530px;
+    }
+
+    .notification-ring {
+        font-size: 12px;
+        height: 20px;
+        line-height: 20px;
+        width: 20px;
+    }
+
+    .nav {
+        margin-bottom: 35px;
+    }
+
+    .nav__link {
+        height: 70px;
+    }
+
+    .nav__icon {
+        width: 30px !important;
+    }
+
+    .nav__icon.home {
+        background-position: left -225px;
+        height: 30px;
+    }
+
+    .nav__icon.phone-book {
+        background-position: -64px -225px;
+        height: 37px;
+    }
+
+    .nav__icon.phone {
+        background-position: -128px -225px;
+        height: 30px;
+    }
+
+    .nav__icon.message {
+        background-position: -160px -225px;
+        height: 28px;
+    }
+
+    .nav__icon.email {
+        background-position: -32px -225px;
+        height: 21px;
+    }
+
+    .nav__icon.calendar {
+        background-position: -192px -225px;
+        height: 30px;
+    }
+
+    .nav__icon.folders {
+        background-position: -224px -225px;
+        height: 26px;
+    }
+
+    .nav__icon.ring {
+        background-position: -96px -225px;
+        height: 36px;
+    }
+
+    .nav-sidebar {
+        width: 80px;
+    }
+
+    .nav__number {
+        line-height: 2px;
+        font-size: 0.875rem;
+    }
+
+    .feed-sidebar,
+    .calendar-list,
+    .list-sidebar.accordion-list,
+    .top-sidebar {
+        left: 80px;
+    }
+
+    .notification-sidebar,
+    .file-manager-sidebar,
+    .large-sidebar,
+    .call-log-sidebar,
+    .list-sidebar.message-list {
+        left: 530px;
+    }
+
+    .feed-sidebar--large {
+        left: 577px;
+        right: 20px;
+    }
+
+    .message-sidebar {
+        left: 980px;
+    }
+
+    .user-profile-box {
+        height: 50px;
+        width: 50px;
+    }
+
+    .user-profile-box__info-box {
+        top: 65px;
+    }
+
+    .brand {
+        font-size: 18px;
+    }
+
+    .nav__number {
+        line-height: 0;
+    }
+
+}
+
+@media all and ( max-width: 1800px ) {
+
+    .email-info-box__writer-info {
+        max-width: 315px;
+    }
+
+    .tag-list {
+        overflow: auto;
+    }
+
+}
+
+@media all and ( max-width: 1720px ) {
+
+    .email-info-box__writer-info,
+    .email-info-box__tools {
+        float: none;
+        max-width: 100%;
+    }
+
+    .email-info-box__writer-info {
+        margin-bottom: 10px;
+        padding-right: 0;
+    }
+
+    .email-info-box__tools {
+        padding-left: 0;
+    }
+
+    .email-info-box__tools .person-info-box__tools-top-box {
+        margin-bottom: 0;
+        text-align: right;
+    }
+
+    .email-info-box-group__wrapper .person-info-box__tools-top-box {
+        margin-bottom: 10px;
+    }
+
+    .email-write-form__attachment-list {
+        max-height: 50px;
+        width: 200px;
+    }
+
+    .email-write-form__attachment-item-title {
+        max-width: 100px;
+    }
+
+    .event-form__parts .large-sidebar__column .form-box__part:first-child {
+        margin-bottom: 10px;
+    }
+
+    .event-form__parts .large-sidebar__column .form-box__part {
+        display: block;
+        margin-left: 0;
+    }
+
+    .event-form__parts .form-box__label-box {
+        display: block;
+    }
+
+}
+
+@media all and ( max-width: 1600px ) {
+
+    html {
+        font-size: 95%;
+    }
+
+    .top-sidebar {
+        padding: 17px;
+    }
+
+    .search-form__text-field {
+        height: 35px;
+        padding: 0 50px 0 15px;
+    }
+
+    .search-form__btn {
+        right: 15px;
+    }
+
+    .list-sidebar {
+        top: 69px;
+        width: 374px;
+    }
+
+    .notification-sidebar,
+    .file-manager-sidebar,
+    .large-sidebar,
+    .call-log-sidebar,
+    .list-sidebar.message-list {
+        left: 454px;
+    }
+
+    .message-sidebar {
+        left: 828px;
+        top: 69px;
+    }
+
+    .log-sidebar--home,
+    .notification-sidebar,
+    .file-manager-sidebar,
+    .feed-sidebar,
+    .large-sidebar,
+    .call-log-sidebar {
+        top: 69px;
+    }
+
+    .top-right-line__person-info .accordion-box__title-box--records.accordion-box__title-box,
+    .top-right-line__person-info .accordion-box__right-box,
+    .notification-sidebar .top-right-line__person-info .accordion-box__right-box,
+    .notification-sidebar .accordion-box__title-box--records.accordion-box__title-box {
+        height: 50px;
+    }
+
+    .file-manager-sidebar .list-search-form__text-field {
+        height: 60px;
+    }
+
+    .top-right-line {
+        height: 90px;
+    }
+
+    .message-top-list__item {
+        width: 35px;
+    }
+
+    .compose-letter-box {
+        height: 50px;
+        line-height: 50px;
+    }
+
+    .compose-letter-box__btn {
+        top: 12px;
+    }
+
+    .large-sidebar__container,
+    .filter-wrapper,
+    .notification {
+        top: 51px;
+    }
+
+    .person-info-list {
+        top: 52px;
+    }
+
+    .large-sidebar__top-title {
+        height: 51px;
+        line-height: 51px;
+    }
+
+    .large-sidebar__top-btns {
+        height: 32px;
+        line-height: 32px;
+        padding: 0 25px;
+    }
+
+    .email-list-main-box {
+        top: 93px;
+    }
+
+    .large-sidebar__top-box,
+    .add-btn,
+    .list-search-form__text-field {
+        height: 51px;
+    }
+
+    .record-group {
+        top: 90px;
+    }
+
+    .message-top-list {
+        height: 47px;
+        padding-top: 4px;
+    }
+
+    .brand {
+        margin: 28px 0;
+    }
+
+    .accordion-box__avatar {
+        height: 35px;
+        width: 35px;
+    }
+
+    .accordion-box__title-box {
+        height: 70px;
+        padding: 0 90px 0 17px;
+    }
+
+    .accordion-box.scroller-block {
+        top: 50px;
+    }
+
+    .person-info-box {
+        padding: 17px;
+    }
+
+    .person-info-box__avatar-box {
+        width: 50px;
+    }
+
+    .person-info-box__text-wrapper {
+        padding: 0 95px 0 68px;
+    }
+
+    .person-info-box__avatar {
+        font-size: 20px;
+        height: 50px;
+        line-height: 50px;
+        width: 50px;
+    }
+
+    .person-info-box__avatar-img-box {
+        width: 24px;
+    }
+
+    .person-info-box__avatar-reverse .person-info-box__avatar-img-box {
+        width: 25px;
+    }
+
+    .person-info-box__avatar-letter-box {
+        width: 27px;
+    }
+
+    .person-info-box__avatar-letter-box.top-right {
+        line-height: 31px;
+        width: 27px;
+    }
+
+    .person-info-box__avatar-letter-box {
+        width: 27px;
+    }
+
+    .person-info-box__avatar-letter-box {
+        line-height: 22px;
+    }
+
+    .person-info-box__avatar-letter-box.top-left {
+        line-height: 30px;
+    }
+
+    .person-info-box.person-info-box--one-person {
+        padding-left: 57px;
+    }
+
+    .person-info-box--one-person .choose-form {
+        left: 17px;
+    }
+
+    .tag-list__item {
+        margin-right: 3px;
+        padding-right: 17px;
+    }
+
+    .message-list .person-info-box__date {
+        margin-right: 0;
+        width: 40px;
+    }
+
+    .person-info-box__tools {
+        width: 70px;
+    }
+
+    .message-top-list__button:before {
+        right: auto;
+    }
+
+    .message-top-list__button.with-triangle:after {
+        border-width: 4px 4px 0 4px;
+        right: -1px;
+    }
+
+    .message-notification-box {
+        padding: 0 20px;
+    }
+
+    .user-profile-box__info-box {
+        padding: 15px;
+        width: 350px;
+    }
+
+    .user-profile-box__avatar-box {
+        height: 100px;
+        line-height: 100px;
+        width: 100px;
+    }
+
+    .user-profile-box__right-box {
+        padding-left: 115px;
+    }
+
+    .accordion-box__email {
+        height: 70px;
+        line-height: 70px;
+    }
+
+    .accordion-box__content-inner-box {
+        padding: 0 17px;
+    }
+
+    .email-info-box--close-state .email-info-box__wrapper {
+        margin-left: 67px;
+    }
+
+    .person-info-box--one-person .person-info-box__text-wrapper {
+        padding-right: 85px;
+    }
+
+    .form-box--checkbox .form-box__label:after {
+        top: 4px;
+    }
+
+    .record-group--for-contacts {
+        top: 102px;
+    }
+
+    .calendar-list .record-group--for-contacts {
+        top: 99px;
+    }
+
+    .record-box--for-contacts .message-top-list {
+        margin-left: 5px;
+        white-space: nowrap;
+    }
+
+    .record-box--for-contacts .message-top-list::-webkit-scrollbar,
+    .record-box--for-contacts .message-top-list::-webkit-scrollbar-thumb,
+    .record-box--for-contacts .message-top-list::-webkit-scrollbar-track {
+        background-color: #CCCCCC;
+        height: 3px;
+    }
+
+    .record-box--for-contacts .message-top-list__item {
+        display: inline-block;
+        float: none;
+        margin-left: 0;
+        vertical-align: top;
+    }
+
+    .files-list__item {
+        width: 25%;
+    }
+
+    .files-list__box .edit-tool-list {
+        right: 0;
+    }
+
+    .list-sidebar--info .accordion-box__right-box {
+        height: 70px;
+        padding-right: 100px;
+    }
+
+    .list-sidebar--info .accordion-box__description,
+    .list-sidebar--info .accordion-box__title {
+        max-width: 180px;
+    }
+
+    .accordion-box__right-box {
+        height: 70px;
+    }
+
+    .call-log-sidebar__main-box {
+        top: 52px;
+    }
+
+    .calendar-list .record-group--contacts-popup {
+        top: 102px;
+    }
+
+    .fc-toolbar.fc-header-toolbar {
+        margin: 9.5px 15px;
+    }
+
+    .notification-line {
+        left: 454px;
+    }
+
+    .calendar-list__inner {
+        top: 51px;
+    }
+
+    .user-profile-box__info-box {
+        top: 59px;
+    }
+
+}
+
+@media all and ( max-width: 1450px ) {
+
+    html {
+        font-size: 90%;
+    }
+
+    .message-notification-box__title {
+        padding-right: 10px;
+    }
+
+    .message-notification-box .person-info-box__tools-flag {
+        margin-right: 10px;
+    }
+
+    .nav-sidebar {
+        width: 80px;
+    }
+
+    .list-sidebar.accordion-list,
+    .top-sidebar {
+        left: 80px;
+    }
+
+    .nav__link {
+        height: 70px;
+    }
+
+    .nav {
+        margin-bottom: 35px;
+    }
+
+    .user-profile-box {
+        height: 50px;
+        width: 50px;
+    }
+
+    .brand {
+        font-size: 18px;
+    }
+
+    .accordion-box__ring {
+        height: 25px;
+        line-height: 25px;
+        padding: 0 8px;
+        right: 45px;
+    }
+
+    .list-sidebar {
+        width: 330px;
+    }
+
+    .notification-sidebar,
+    .file-manager-sidebar,
+    .large-sidebar,
+    .call-log-sidebar,
+    .list-sidebar.message-list {
+        left: 410px;
+    }
+
+    .message-sidebar {
+        left: 740px;
+    }
+
+    .person-info-box {
+        padding: 12px;
+    }
+
+    .log-sidebar__wrapper .person-info-box {
+        padding: 17px;
+    }
+
+    .ui-datepicker-multi-4 .ui-datepicker-group {
+        padding: 10px;
+        width: 100%;
+    }
+
+    .ui-datepicker td a,
+    .ui-datepicker td span {
+        margin: 0 auto;
+    }
+
+    .calendar-list .form-box__part {
+        float: none;
+        padding: 0;
+        width: 100%;
+    }
+
+    .calendar-list .form-box__part:first-child {
+        margin-bottom: 20px;
+    }
+
+    .nav__number {
+        line-height: 1px;
+    }
+
+    .record-box--for-contacts .message-top-list {
+        max-width: 180px;
+    }
+
+    .list-sidebar--info .accordion-box__description,
+    .list-sidebar--info .accordion-box__title {
+        max-width: 145px;
+    }
+
+    .fc-toolbar.fc-header-toolbar {
+        margin: 10.5px 15px;
+    }
+
+    .notification-line {
+        left: 410px;
+    }
+
+}
+
+@media all and ( max-width: 1400px ) {
+
+    .email-container {
+        padding: 0 20px;
+    }
+
+    .email-write-container {
+        margin: 0 20px;
+    }
+
+    .email-info-box__wrapper,
+    .email-info-box--close-state .email-info-box__wrapper {
+        margin-left: 0;
+    }
+
+    .email-info-box .person-info-box__avatar {
+        float: none;
+        margin-bottom: 5px;
+    }
+
+    .email-info-box__tools .person-info-box__tools-top-box {
+        text-align: left;
+    }
+
+    .email-info-box__tools .person-info-box__tools-star {
+        float: none;
+        margin-left: 0;
+        margin-right: 10px;
+    }
+
+    .list-search-form__autocomplete-box {
+        padding: 15px;
+    }
+
+    .modal-content--sms .list-search-form__autocomplete-title {
+        margin: 0 -15px;
+    }
+
+    .calendar__list .ui-datepicker-group {
+        width: 33.3333%;
+    }
+
+}
+
+@media all and ( max-width: 1300px ) {
+
+    html {
+        font-size: 85%;
+    }
+
+    .list-sidebar {
+        width: 305px;
+    }
+
+    .notification-sidebar,
+    .file-manager-sidebar,
+    .large-sidebar,
+    .call-log-sidebar,
+    .list-sidebar.message-list {
+        left: 385px;
+    }
+
+    .message-sidebar {
+        left: 690px;
+    }
+
+    .form-box--checkbox .form-box__label:after {
+        top: 3px;
+    }
+
+    .record-group {
+        top: 88px;
+    }
+
+    .nav__number {
+        line-height: 6px;
+    }
+
+    .record-group--for-contacts {
+        top: 101px;
+    }
+
+    .record-box--for-contacts .message-top-list {
+        max-width: 140px;
+    }
+
+    .feed-sidebar {
+        padding-right: 20px;
+    }
+
+    .feed-sidebar--large {
+        left: 531px;
+    }
+
+    .feed-sidebar .accordion-box__description {
+        max-width: 200px;
+    }
+
+    .files-list__item {
+        width: 33.3333%;
+    }
+
+    .switcher-list {
+        margin-left: 20px;
+    }
+
+    .cover-box .center-1180,
+    .project-info-box .center-1080,
+    footer .center-1180 {
+        max-width: 1000px;
+    }
+
+    .cover-box__right-content {
+        padding-left: 620px;
+    }
+
+    .project-info-box__screen {
+        background-size: 512px auto;
+        padding-top: 18px;
+        width: 512px;
+    }
+
+    .project-info-box__screen-img {
+        max-width: 340px;
+    }
+
+    .list-sidebar--info .accordion-box__description,
+    .list-sidebar--info .accordion-box__title {
+        max-width: 115px;
+    }
+
+    .calendar-list .record-group--for-contacts {
+        top: 124px;
+    }
+
+    .call-log-sidebar__main-box {
+        top: 51px;
+    }
+
+    .calendar-list .record-group--contacts-popup {
+        top: 101px;
+    }
+
+    .fc-toolbar.fc-header-toolbar {
+        margin: 11px 15px;
+    }
+
+    .notification-line {
+        left: 385px;
+    }
+
+    .record-box--for-contacts .record-box__list {
+        position: static;
+    }
+
+    .record-box--for-contacts .record-box__list-link {
+        float: none;
+    }
+
+    .record-box--for-contacts .message-top-list {
+        margin-bottom: 10px;
+    }
+
+}
+
+@media all and ( max-width: 1200px ) {
+
+    html {
+        font-size: 85%;
+    }
+
+    .nav-sidebar {
+        width: 65px;
+    }
+
+    .nav__link {
+        height: 60px;
+    }
+
+    .feed-sidebar,
+    .calendar-list,
+    .list-sidebar.accordion-list,
+    .top-sidebar {
+        left: 65px;
+    }
+
+    .feed-sidebar--large {
+        left: 516px;
+        min-width: 447px;
+    }
+
+    .accordion-box__title-box {
+        padding-right: 90px;
+    }
+
+    .list-sidebar {
+        width: 280px;
+    }
+
+    .notification-sidebar,
+    .file-manager-sidebar,
+    .large-sidebar,
+    .call-log-sidebar,
+    .list-sidebar.message-list {
+        left: 345px;
+    }
+
+    .message-sidebar {
+        left: 625px;
+        min-width: 398px;
+    }
+
+    .top-sidebar {
+        min-width: 924px;
+    }
+
+    .notification-sidebar,
+    .file-manager-sidebar,
+    .large-sidebar,
+    .call-log-sidebar {
+        min-width: 678px;
+    }
+
+    .call-log-person-item {
+        display: block;
+        padding-bottom: 5px;
+    }
+
+    .create-contact-popup--content .call-log-person-item {
+        display: table-cell;
+        padding-bottom: 40px;
+    }
+
+    .file-manager-top-box .list-search-form {
+        width: 30%;
+    }
+
+    .file-manager-top-box__right {
+        width: 70%;
+    }
+
+    .log-sidebar__wrapper {
+        margin: 0;
+        max-width: 100%;
+    }
+
+    .list-sidebar--info .accordion-box__description,
+    .list-sidebar--info .accordion-box__title {
+        max-width: 90px;
+    }
+
+    .log-sidebar--home {
+        left: 65px;
+    }
+
+    .notification-line {
+        left: 345px;
+    }
+
+    .calendar__list .ui-datepicker-group {
+        padding: 10px 10px !important;
+    }
+
+    .calendar__list {
+        padding: 40px 10px 0;
+    }
+
+    .fc button {
+        padding: 0 10px;
+    }
+
+}
+
+@media all and ( max-width: 1023px ) {
+
+    body {
+        min-width: 1023px;
+    }
+
+}

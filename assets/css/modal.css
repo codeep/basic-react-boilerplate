@@ -1,0 +1,159 @@
+/* Modal */
+
+.fade {
+    opacity: 0;
+    -webkit-transition: opacity .15s linear;
+    -o-transition: opacity .15s linear;
+    transition: opacity .15s linear;
+}
+
+.fade.in {
+    opacity: 1;
+}
+
+.modal-backdrop.fade {
+    opacity: 0;
+}
+
+.modal-backdrop.in {
+    opacity: .6;
+}
+
+.modal-backdrop {
+    background-color: #000000;
+    bottom: 0;
+    left: 0;
+    opacity: .5;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 1040;
+}
+
+.modal-open {
+    overflow: hidden;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1050;
+    -webkit-overflow-scrolling: touch;
+    outline: 0;
+}
+
+.vertical-alignment-helper {
+    display: table;
+    height: 100%;
+    width: 100%;
+}
+
+.modal-dialog {
+    display: table-cell;
+    padding: 0 15px;
+    position: relative;
+    vertical-align: middle;
+}
+
+.modal__close:active:before {
+    opacity: .3;
+}
+
+.modal-content {
+    height: inherit;
+    max-width: 600px;
+    margin: 15px auto;
+}
+
+.modal-content .btn {
+    margin-left: 16px;
+}
+
+.modal.fade .modal-dialog {
+    -webkit-transform: translate(0, -25%);
+    -ms-transform: translate(0, -25%);
+    -o-transform: translate(0, -25%);
+    transform: translate(0, -25%);
+    -webkit-transition: -webkit-transform 0.3s ease-out;
+    -o-transition: -o-transform 0.3s ease-out;
+    transition: transform 0.3s ease-out;
+}
+
+.modal.in .modal-dialog {
+    -webkit-transform: translate(0, 0);
+    -ms-transform: translate(0, 0);
+    -o-transform: translate(0, 0);
+    transform: translate(0, 0);
+}
+
+.modal-content .list-search-form__autocomplete-box {
+    position: static;
+}
+
+.modal-content .form-box {
+    margin-bottom: 20px;
+}
+
+.modal-content .form-box--checkbox {
+    margin: 0 0 10px;
+}
+
+.modal-footer .btn+.btn {
+    color: #fff !important;
+}
+
+.modal {
+    text-align: center;
+    padding: 0!important;
+}
+  
+.modal:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    margin-right: -4px;
+}
+
+.modal-dialog {
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+    padding: 0;
+}
+
+.form-box .area {
+    border: none;
+    color: #b2b2b2;
+    height: 150px;
+    padding: 0;
+}
+
+/* NEW */
+.choose-image-input {
+    display:none !important
+}
+.add-modal {
+    width: 1000px;
+}
+.delete-input-text {
+    bottom: 0;
+    margin: auto;
+    position: absolute;
+    right: 13px;
+    top: 0;
+}
+.plus-icon:before {
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    position: absolute;
+    top: 0;
+}
+.notes-textarea {
+    height: 150px !important
+}

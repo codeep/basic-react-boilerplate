@@ -1,18 +1,18 @@
 import React from 'react';
-import profile from "../static/img/user_profile/Vladimir_Putin_12023.png";
 
 export const Header = () => {
+  
   return(
     <aside className="top-sidebar">
-      <form className="search-form" action="#" method="post">
+      <form className="search-form ff" action="#" method="post">
           <div className="search-form__box pr">
               <input className="search-form__text-field" type="text" name="main-search" placeholder="Search" />
               <input className="search-form__btn sprite" type="submit" value="" />
           </div>
       </form>
 
-      <div className="user-profile-box pr user-profile-box--with-img">
-          <img src={profile} alt="Image alternative description" />
+      <div className="user-profile-box user-profile-box--with-img">
+          <img src={require('../../assets/img/user_profile/user.png')} alt="Image alternative description" />
 
           <div className="user-profile-box__info-box clear-fix _autoclose dn">
               <div className="user-profile-box__avatar-box fl">

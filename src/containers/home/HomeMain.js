@@ -8,7 +8,7 @@ class HomeMain extends React.Component {
           <h3>Schedule</h3>
         </div>
         <div className="col-md-6">
-          <h3>Home</h3>
+          <h3>bvtestc</h3>
         </div>
       </div>
     )

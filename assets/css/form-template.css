@@ -1,0 +1,57 @@
+.form-box {
+    margin-bottom: 10px;
+}
+
+.form-box__label-box {
+    margin-bottom: 7px;
+}
+
+.form-box__label {
+    color: #212121;
+}
+
+.form-box input[type="number"],
+.form-box input[type="email"],
+.form-box input[type="text"],
+.form-box input[type="password"],
+.form-box textarea,
+.form-box select {
+    border: 1px solid #DEDEDE;
+    box-sizing: border-box;
+    color: #212121;
+    height: 30px;
+    padding: 0 5px;
+    width: 100%;
+}
+
+.form-box input[type="number"]:focus,
+.form-box input[type="email"]:focus,
+.form-box input[type="text"]:focus,
+.form-box input[type="password"]:focus,
+.form-box textarea:focus,
+.form-box select:focus {
+    border-color: #212121;
+}
+
+.form-box--checkbox .form-box__label {
+    cursor: pointer;
+    padding-left: 22px;
+}
+
+.form-box--checkbox .form-box__label:before {
+    background-position: -447px top;
+    height: 16px;
+    padding-top: 2px;
+    right: auto;
+    width: 16px;
+}
+
+.form-box--checkbox .form-box__label:after {
+    content: '';
+    display: none;
+    height: 8px !important;
+    left: 4px;
+    position: absolute;
+    top: 5px;
+    width: 8px !important;
+}

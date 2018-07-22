@@ -1,0 +1,494 @@
+html,body,div,span,applet,object,iframe,
+h1,h2,h3,h4,h5,h6,p,blockquote,pre,
+a,abbr,acronym,address,big,cite,code,
+del,dfn,em,img,ins,kbd,q,s,samp,
+small,strike,strong,sub,sup,tt,var,
+b,u,i,center,
+dl,dt,dd,ol,ul,li,
+fieldset,form,label,legend,
+table,caption,tbody,tfoot,thead,tr,th,td,
+article,aside,canvas,details,embed,
+figure,figcaption,footer,header,hgroup,
+menu,nav,output,ruby,section,summary,
+time,mark,audio,video {
+    border: 0;
+    font: inherit;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+}
+
+article,aside,details,figcaption,figure,
+footer,header,hgroup,menu,nav,section,main {
+    display: block;
+}
+
+blockquote,q {
+    quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+/* Fonts */
+
+@font-face {
+    src: url('../fonts/Roboto-Black.ttf') format('truetype');
+    font-family: 'Roboto-Black';
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    src: url('../fonts/Roboto-Bold.ttf') format('truetype');
+    font-family: 'Roboto-Bold';
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    src: url('../fonts/Roboto-Light.ttf') format('truetype');
+    font-family: 'Roboto-Light';
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    src: url('../fonts/Roboto-Medium.ttf') format('truetype');
+    font-family: 'Roboto-Medium';
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    src: url('../fonts/Roboto-Regular.ttf') format('truetype');
+    font-family: 'Roboto-Regular';
+    font-style: normal;
+    font-weight: normal;
+}
+
+.roboto-black   { font-family: 'Roboto-Black';   }
+b,
+strong,
+.font-bold,
+.roboto-bold    { font-family: 'Roboto-Bold';    }
+.roboto-light   { font-family: 'Roboto-Light';   }
+.roboto-medium  { font-family: 'Roboto-Medium';  }
+.roboto-regular { font-family: 'Roboto-Regular'; }
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+html, body {
+    height: 100%;
+}
+
+html {
+    font-size: 100.0%;
+}
+
+body {
+    background-color: #FFFFFF;
+    font-family: 'Roboto-Regular';
+    line-height: normal;
+}
+
+body.lock {
+    overflow: hidden;
+}
+
+input, textarea {
+    font-size: 100.0%;
+    font-family: 'Roboto-Regular';
+    appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+    -webkit-appearance: none;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    outline: 0;
+}
+
+textarea {
+    resize: none;
+    vertical-align: middle;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
+}
+
+button {
+    background-color: transparent;
+    border: none;
+    font-family: 'Roboto-Regular';
+    cursor: pointer;
+    padding: 0;
+}
+
+input,
+textarea,
+button,
+select {
+    font-size: 100.0%;
+}
+
+img {
+    border: none;
+    max-width: 100%;
+    vertical-align: middle;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+:focus {
+    outline: 0 !important;
+}
+
+::-ms-clear {
+    display: none;
+}
+
+a {
+    color: #1f71ec;
+    cursor: pointer;
+    outline: 0;
+    text-decoration: underline;
+}
+
+.three-dots-on-line-end {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+a:focus,
+a:active,
+a:visited {
+    text-decoration: none;
+}
+
+i,
+em,
+.italic {
+    font-style: italic;
+}
+
+.mb-none { margin-bottom: 0 !important; }
+.cb  { clear: both; }
+.db  { display: block; }
+.dib { display: inline-block; }
+.fl  { float: left; }
+.fr  { float: right; }
+.pr  { position: relative; }
+.pa  { position: absolute }
+.mln { margin-left: 0 !important; }
+.tc  { text-align: center; }
+.tr  {  text-align: right; }
+.tj  { text-align: justify; }
+.tu  { text-transform: uppercase; }
+.ver-top-box {
+    display: inline-block;
+    vertical-align: top;
+}
+.dn  { display: none; }
+.vertical-alignment-top {
+    vertical-align: top !important;
+}
+.center-center,
+.center-center-before:before {
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.ver-middle-block {
+    display: inline-block;
+    vertical-align: middle
+}
+
+.cursor {
+    cursor: pointer;
+}
+
+.center-800,
+.center-1080,
+.center-1180,
+.center {
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 0 15px;
+}
+
+.center-1180 {
+    max-width: 1180px;
+}
+
+.center-1080 {
+    max-width: 1080px;
+}
+
+.center-800 {
+    max-width: 800px;
+}
+
+.form-error input[type="number"],
+.form-error input[type="email"],
+.form-error input[type="text"],
+.form-error input[type="password"] {
+    border-color: #f44336 !important;
+}
+
+.form-error .form-error-message {
+    padding-top: 5px;
+}
+
+.form-error-message {
+    color: #f44336;
+}
+
+.clear-fix:after {
+    content: '';
+    clear: both;
+    display: block;
+}
+
+.select-none {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+.table {
+    display: table;
+    height: 100%;
+    width: 100%;
+}
+
+.table-cell {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.table-responsive {
+    margin-bottom: 20px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+}
+
+.scroller-block {
+    overflow: auto;
+}
+
+.selectize-dropdown-content,
+.table-responsive,
+.scroller-block {
+    -webkit-overflow-scrolling: touch;
+    scrollbar-base-color: #CACACA;
+    scrollbar-3dlight-color: #fff;
+    scrollbar-highlight-color: #CACACA;
+    scrollbar-track-color: #E9E9E9;
+    scrollbar-arrow-color: #CACACA;
+    scrollbar-shadow-color: #CACACA;
+    scrollbar-dark-shadow-color: #CACACA;
+}
+
+.ui-timepicker-wrapper::-webkit-scrollbar-thumb,
+.ui-timepicker-wrapper::-webkit-scrollbar-track,
+.ui-timepicker-wrapper::-webkit-scrollbar,
+.fc-day-grid-container::-webkit-scrollbar-thumb,
+.fc-day-grid-container::-webkit-scrollbar-track,
+.fc-day-grid-container::-webkit-scrollbar,
+body::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-track,
+body::-webkit-scrollbar,
+.selectize-dropdown-content::-webkit-scrollbar-thumb,
+.selectize-dropdown-content::-webkit-scrollbar-track,
+.selectize-dropdown-content::-webkit-scrollbar,
+.table-responsive::-webkit-scrollbar-thumb,
+.table-responsive::-webkit-scrollbar-track,
+.table-responsive::-webkit-scrollbar,
+.scroller-block::-webkit-scrollbar-thumb,
+.scroller-block::-webkit-scrollbar-track,
+.scroller-block::-webkit-scrollbar {
+    border-radius: 7px;
+    height: 10px;
+    width: 10px;
+}
+
+.fc-day-grid-container::-webkit-scrollbar-track,
+body::-webkit-scrollbar-track,
+.selectize-dropdown-content::-webkit-scrollbar-track,
+.table-responsive::-webkit-scrollbar-track,
+.scroller-block::-webkit-scrollbar-track {
+    background-color: #E9E9E9;
+}
+
+.ui-timepicker-wrapper::-webkit-scrollbar-thumb,
+.fc-day-grid-container::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb,
+.selectize-dropdown-content::-webkit-scrollbar-thumb,
+.table-responsive::-webkit-scrollbar-thumb,
+.scroller-block::-webkit-scrollbar-thumb {
+    background-color: #CACACA;
+}
+
+.trans-color {
+    -webkit-transition: color 0.3s ease;
+    -moz-transition: color 0.3s ease;
+    -ms-transition: color 0.3s ease;
+    -o-transition: color 0.3s ease;
+    -khtml-transition: color 0.3s ease;
+    transition: color 0.3s ease;
+}
+
+.trans-background {
+    -webkit-transition: background 0.3s ease;
+    -moz-transition: background 0.3s ease;
+    -ms-transition: background 0.3s ease;
+    -o-transition: background 0.3s ease;
+    -khtml-transition: background 0.3s ease;
+    transition: background 0.3s ease;
+}
+
+.trans-all{
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -khtml-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-transition-delay: 9999s;
+    -webkit-transition: color 9999s ease-out, background-color 9999s ease-out;
+}
+
+/* Default font-size 16px */
+
+.fs10 { font-size: 0.625rem; }
+.fs11 { font-size: 0.688rem; }
+.fs12 { font-size: 0.750rem; }
+.fs13 { font-size: 0.813rem; }
+.fs14 { font-size: 0.875rem; }
+.fs15 { font-size: 0.938rem; }
+.fs16 { font-size: 1.000rem; }
+.fs17 { font-size: 1.063rem; }
+.fs18 { font-size: 1.125rem; }
+.fs19 { font-size: 1.188rem; }
+.fs20 { font-size: 1.250rem; }
+.fs21 { font-size: 1.313rem; }
+.fs22 { font-size: 1.375rem; }
+.fs23 { font-size: 1.438rem; }
+.fs24 { font-size: 1.500rem; }
+.fs25 { font-size: 1.563rem; }
+.fs26 { font-size: 1.625rem; }
+.fs27 { font-size: 1.688rem; }
+.fs28 { font-size: 1.750rem; }
+.fs29 { font-size: 1.813rem; }
+.fs30 { font-size: 1.875rem; }
+.fs31 { font-size: 1.938rem; }
+.fs32 { font-size: 2.000rem; }
+.fs40 { font-size: 2.500rem; }
+.fs50 { font-size: 3.125rem; }
+.fs54 { font-size: 3.375rem; }
+.fs60 { font-size: 3.750rem; }
+
+/* For 1x devices */
+
+.fc-more-button:before,
+.ui-datepicker .ui-datepicker-next:before,
+.ui-datepicker .ui-datepicker-prev:before,
+.sprite,
+.sprite-b:before,
+.sprite-a:after {
+    background-image: url('../img/sprite.png?v=4');
+    background-repeat: no-repeat;
+}
+
+.fc-more-button:before,
+.sprite-b:before,
+.sprite-a:after {
+    content: '';
+}
+
+/* For 2x devices */
+
+@media only screen and ( -webkit-min-device-pixel-ratio: 2 ),
+only screen and ( -webkit-min-device-pixel-ratio: 1.5 ),
+only screen and ( -moz-min-device-pixel-ratio: 2),
+only screen and ( -o-min-device-pixel-ratio: 3/2),
+only screen and ( -o-min-device-pixel-ratio: 2/1),
+only screen and ( min--moz-device-pixel-ratio: 1.5),
+only screen and ( min-device-pixel-ratio: 1.5),
+only screen and ( min-device-pixel-ratio: 2) {
+
+    .fc-more-button:before,
+    .ui-datepicker .ui-datepicker-next:before,
+    .ui-datepicker .ui-datepicker-prev:before,
+    .sprite,
+    .sprite-b:before,
+    .sprite-a:after {
+        background-image: url('../img/sprite2x.png?v=4');
+        background-size: 500px auto;
+    }
+
+}
+
+/* For 3x devices */
+
+@media (-webkit-min-device-pixel-ratio: 3), (min-resolution: 480dpi) {
+
+    .fc-more-button:before,
+    .ui-datepicker .ui-datepicker-next:before,
+    .ui-datepicker .ui-datepicker-prev:before,
+    .sprite,
+    .sprite-b:before,
+    .sprite-a:after {
+        background-image: url('../img/sprite3x.png?v=4');
+        background-size: 500px auto;
+    }
+
+}
+
+/* For 4x devices */
+
+@media (-webkit-min-device-pixel-ratio: 4), (min-resolution: 640dpi) {
+
+    .fc-more-button:before,
+    .ui-datepicker .ui-datepicker-next:before,
+    .ui-datepicker .ui-datepicker-prev:before,
+    .sprite,
+    .sprite-b:before,
+    .sprite-a:after {
+        background-image: url('../img/sprite4x.png?v=4');
+        background-size: 500px auto;
+    }
+
+}

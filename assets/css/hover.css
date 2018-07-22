@@ -1,0 +1,149 @@
+@media screen and (min-width: 767px) {
+
+    .nav__link:hover {
+        background-color: #1F71EC;
+    }
+
+    .nav__link:not(.active):hover .nav__icon {
+        animation: scaleDownUp 0.5s ease 1;
+    }
+
+    .add-btn:hover:before,
+    .add-btn:hover:after,
+    .ui-datepicker .ui-datepicker-next:hover:before,
+    .ui-datepicker .ui-datepicker-prev:hover:before,
+    .person-info-box__tools-flag:hover,
+    .person-info-box__tools-star:hover,
+    .hover-active-opacity-before:hover:before,
+    .hover-active-opacity:hover,
+    .tag-list__remove-item:hover,
+    .list-search-form__filter-btn:hover,
+    .compose-letter-box__btn:hover,
+    .search-form__btn:hover {
+        opacity: .7;
+    }
+
+    .form-button-box__table:hover,
+    .accordion-box__title-box:hover {
+        background-color: #F9F9F9;
+    }
+    .accordion-box__title-box.active {
+        background-color: #e6e6e6
+    }
+
+    .edit-tool-list__link:hover,
+    .sub-list__link:hover,
+    .independent-list__link:hover,
+    .accordion-box__second-list-title:hover {
+        background-color: #e6e6e6;
+    }
+
+    .file-manager-gray-box__link:hover,
+    .brand-title:hover,
+    .log-sidebar__paragraph-link:hover,
+    .deliver-message__link:hover,
+    a.call-log-person-box__title:hover,
+    .record-box__list-link:hover,
+    .call-log-sidebar__add:hover,
+    .add-reminder:hover,
+    .email-count-box__link:hover,
+    .user-profile-box__sub-title-link:hover {
+        text-decoration: underline;
+    }
+
+    .static-content a:hover {
+        text-decoration: none;
+    }
+
+    .calendar__expand-box-item:hover,
+    .email-info-box--close-state:hover,
+    .person-info-box:hover {
+        background-color: #E6E6E6;
+    }
+
+    .attachments-list .action-btn-list__link:hover {
+        background-color: #CCCCCC;
+    }
+
+    .feed-sidebar .log-sidebar__group-section:hover .log-sidebar__button-group,
+    .accordion-box__second-list-tool-btn:hover .edit-tool-list,
+    .attachments-list__item:hover .action-btn-list {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .tab__link:hover {
+        background-color: #F4F4F4;
+    }
+
+    .tab__notification-list--blue .tab__notification-link:hover {
+        background-color: #9AB9E7;
+    }
+
+    .tab__notification-list--orange .tab__notification-link:hover {
+        background-color: #EDAF9C;
+    }
+
+    .ui-datepicker td a:hover {
+        background-color: #1F71EC;
+        color: #FFFFFF;
+    }
+
+    .form-box--radio .form-box__label:hover:before {
+        background-position: -246px -94px;
+    }
+
+    .record-box__form .form-box__label:hover {
+        background-color: #F7F7F7;
+    }
+
+    .call-log-letter-btn:hover {
+        background-color: #22252B;
+    }
+    
+    .dark-blue-btn:hover {
+        background-color: #256BC1;
+    }
+
+    .recent-files-list__link:hover {
+        background-color: #F7F7F7;
+    }
+
+    .email-write-form__attachment-item:hover {
+        background-color: #DEDEDE;
+    }
+
+    .main-menu__link:hover {
+        color: #1F71EC;
+    }
+
+    .enter-form__checkbox-label:hover:after {
+        display: block;
+    }
+
+    .project-menu__link:hover {
+        color: #1F71EC;
+    }
+
+    .project-menu__link:hover:before {
+        width: 100%;
+    }
+
+    .toggle-password:hover {
+        opacity: .7;
+    }
+
+    .files-list__box:hover {
+        box-shadow: 0 0 10px rgba( 0,0,0,.15 );
+    }
+
+    .file-table tr.trans-background:hover {
+        background-color: #E6E6E6;
+    }
+
+    .calendar__expand-box-item:hover .calendar__expand-accounts {
+        opacity: 1;
+        visibility: visible;
+    }
+
+}
