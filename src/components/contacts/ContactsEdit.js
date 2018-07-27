@@ -24,8 +24,6 @@ class ContactsEdit extends Component {
         position: this.props.id.position
       }
       
-
-    
     nameChange = (e) => {
         this.setState({ name: e.target.value})
     }
@@ -58,7 +56,7 @@ class ContactsEdit extends Component {
         this.setState({ notes: e.target.value })
     }
     
-
+    
 
 
     changePhoneType = (index) => (e) => {
@@ -140,7 +138,6 @@ class ContactsEdit extends Component {
     }
 
   render() {
-    console.log('===STATE===', this.state.phone_changes)
     let contactList = _.map(this.state.phone_changes, (phItem, index) => {
         return (
         <tr key ={index} className = "formset-item phone-number">
@@ -257,7 +254,7 @@ class ContactsEdit extends Component {
         )
     })
     return (
-      <div>
+        <aside id="_contact-details-wrapper" className="call-log-sidebar clear-fix" data-contact-id="">
           <ul className="message-top-list clear-fix">
             <li className="message-top-list__item fr">
                 <button className="message-top-list__button sprite-b center-center-before pr hover-active-opacity-before remove-icon" type="button"></button>
@@ -468,7 +465,7 @@ class ContactsEdit extends Component {
                 </form>
             </div>
         </div>
-      </div>
+      </aside>
     )
   }
 }

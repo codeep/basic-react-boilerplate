@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import Select from 'react-select';
 import {modal} from '../modals/Modal'
-import ContactsEdit from './ContactsEdit'
 
 class ContactsDetails extends Component {
 
@@ -33,20 +32,11 @@ class ContactsDetails extends Component {
         4: 'Mobile',
         5: 'Unknown'
       }
-    ],
-    editable: false
-  }
-
-  editContact = () => {
-    this.setState({ editable: true })
+    ]
   }
 
   deleteContact = (e) => {
     this.props.deleteContact(this.props.deleteId)
-  }
-
-  cancelEdit = (bool) => {
-    this.setState({editable: bool})
   }
 
   handleOnChange = (value) => {
@@ -56,7 +46,9 @@ class ContactsDetails extends Component {
 		} else {
 			this.setState({ value })
 		}
-	}
+  }
+  
+  
 
   render() {
     const { atTop, multi, multiValue, options, value } = this.state
@@ -97,7 +89,7 @@ class ContactsDetails extends Component {
     })
     return (
     <aside id="_contact-details-wrapper" className="call-log-sidebar clear-fix" data-contact-id="">
-      {!this.state.editable ? <div className="call-log-sidebar_wrapper">
+      <div className="call-log-sidebar_wrapper">
         <div className="call-log-sidebar_wrapper _contact-view-wrapper">
           {/* HEADER ICONS */}
           <ul id="_contact-details-toolbar" className="message-top-list clear-fix">
@@ -120,7 +112,7 @@ class ContactsDetails extends Component {
           <div className="call-log-person-box call-log-person-box--big pr clear-fix">
           <div className="call-log-person-box__left-box fl tc">
             <div className="call-log-person-box__avatar sprite-b center-center-before"></div>
-            <button onClick={this.editContact} className="gray-btn ver-top-box font-bold fs18 hover-active-opacity _contact-edit-btn" type="button">Edit</button>
+            <button onClick={this.props.editableContact} className="gray-btn ver-top-box font-bold fs18 hover-active-opacity _contact-edit-btn" type="button">Edit</button>
           </div>
           {/* RIGHT */}
           {modal(<div>
@@ -177,12 +169,6 @@ class ContactsDetails extends Component {
         </div>
         <div className="call-log-sidebar_wrapper _contact-edit-wrapper dn"></div>
       </div>
-      :
-      <ContactsEdit
-      id={id}
-      cancelEdit={this.cancelEdit}
-      editContact={this.props.editContact}
-      />}
     </aside>
     
     )
