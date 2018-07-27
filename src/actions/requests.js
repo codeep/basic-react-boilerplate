@@ -16,26 +16,12 @@ export const Http = {
     },
     post: (url, phoneData) => {
         return new Promise((resolve, reject) => {
+            console.log('phoneData', phoneData)
             let headers = {
                 'Authorization': 'JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImFfZ2FzQGljbG91ZC5jb20iLCJleHAiOjE1MTYzNjAwNjAsInVzZXJfaWQiOjcsInVzZXJuYW1lIjoiYV9nYXNAaWNsb3VkLmNvbSJ9.-YVUDeuNGayYl-e1ICucRYzRq8jyo0GPSV2-U_dV75s',
                 'Content-Type': 'application/json'  
             }
-            let fake = {
-                "name": "Ivan Ivanov",
-                "position": "Senior JavaScript developer",
-                "notes": "This is just a test note",
-                "phones": phoneData,
-                "emails": [
-                    {"type": 2,
-                    "email": "test1@gmail.com"	
-                    },
-                    {"type": 1,
-                    "email": "test2@gmail.com"	
-                    }
-                    ],
-                "addresses": []	
-                }
-            axios.post(url, fake, {
+            axios.post(url, phoneData, {
                 headers: headers
             })
             .then((response) => resolve(response))

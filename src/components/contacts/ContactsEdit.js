@@ -1,120 +1,147 @@
 import React, { Component } from 'react'
-import * as _ from 'lodash'
-import  addContact  from '../../actions/addContact'
-import { connect } from 'react-redux'
 
-class ModalAddContact extends Component {
+class ContactsEdit extends Component {
+    state = {
+        phone_changes: this.props.id.phones,
+        deleted: [
 
-  state = {
-    phoneNumbers: [],
-    emails: [],
-    addresses: [
-        {
-            street: '',
-            city: '',
-            country: '',
-            region: '',
-            postcode: '',
-            type: 1
-        }
-    ],
-    notes: ''
-  }
-  
+        ],
+        emails: [],
+        addresses: [
+            {
+                street: '',
+                city: '',
+                country: '',
+                region: '',
+                postcode: '',
+                type: 1
+            }
+        ],
+        notes: this.props.id.notes,
+        cancleEdit: false,
+        name: this.props.id.name,
+        company: this.props.id.company,
+        position: this.props.id.position
+      }
+      
 
-
-  changePhoneName = (index) => (e) => {
-    const newPhoneNumbers = this.state.phoneNumbers.map((phItem, phIndex) => {
-      if (index !== phIndex) return phItem
-      return { ...phItem, number: e.target.value }
+    
+    nameChange = (e) => {
+        this.setState({ name: e.target.value})
+    }
+    removeName = () => {
+        this.setState({ name: '' })
+    }
+    companyChange = (e) => {
+        this.setState({ company: e.target.value})
+    }
+    positionChange = (e) => {
+        this.setState({ position: e.target.value})
+    }
+    
+    
+    changePhoneName = (index) => (e) => {
+        const newPhoneNumbers = this.state.phone_changes.map((phItem, phIndex) => {
+        if (index !== phIndex) return phItem
+        return { ...phItem, number: e.target.value }
     })
-    this.setState({ phoneNumbers: newPhoneNumbers })
-  }
-  changeEmailName = (index) => (e) => {
-    const newEmailNumbers = this.state.emails.map((emItem, emIndex) => {
+        this.setState({ phone_changes: newPhoneNumbers })
+    }
+    changeEmailName = (index) => (e) => {
+        const newEmailNumbers = this.state.emails.map((emItem, emIndex) => {
         if (index !== emIndex) return emItem
         return { ...emItem, email: e.target.value }
     })
-    this.setState({ emails: newEmailNumbers })
-  }
-  changeNotes = (e) => {
-    this.setState({ notes: e.target.value })
-  }
+        this.setState({ emails: newEmailNumbers })
+    }
+    changeNotes = (e) => {
+        this.setState({ notes: e.target.value })
+    }
+    
 
 
 
-  changePhoneType = (index) => (e) => {
-    const newphoneNumbers = this.state.phoneNumbers.map((phItem, phIndex) => {
+    changePhoneType = (index) => (e) => {
+        const newphoneNumbers = this.state.phone_changes.map((phItem, phIndex) => {
         if (index !== phIndex) return phItem
-        return { ...phItem, type: parseInt(e.target.value) }
+        return { ...phItem, typeId: parseInt(e.target.value) }
     })
-    this.setState({ phoneNumbers: newphoneNumbers })
-  }
-  changeEmailType = (index) => (e) => {
-    const newEmailNumbers = this.state.emails.map((emItem, emIndex) => {
+        this.setState({ phone_changes: newphoneNumbers })
+    }
+    changeEmailType = (index) => (e) => {
+        const newEmailNumbers = this.state.emails.map((emItem, emIndex) => {
         if (index !== emIndex) return emItem
-        return { ...emItem, type: parseInt(e.target.value) }
+        return { ...emItem, typeId: parseInt(e.target.value) }
     })
-    this.setState({ emails: newEmailNumbers })
-  }
+        this.setState({ emails: newEmailNumbers })
+    }
 
-  
+    saveEdit = (e, data) => {
+        e.preventDefault()
+        data = {
+            "id": this.props.id.id,
+            "name": this.state.name,
+            "phone_changes": this.state.phone_changes,
+            "company": this.state.company,
+            "position": this.state.position,
+            "email_changes":this.state.emails,
+            "addresses": [],
+            "notes": this.state.notes
+        }
+        if(this.state.deleted.length !== 0) {
+            this.state.phone_changes.push(this.state.deleted)
+        }
+        this.props.editContact(data)
+    }
 
-  addPhone = () => {
-    this.setState({ phoneNumbers: this.state.phoneNumbers.concat([{ number: '', type: 1  }]) })
-  }
-  addEmail = () => {
-    this.setState({ emails: this.state.emails.concat([{ email: '', type: 1  }]) })
-  }
 
-  
-  removePhone = (index) => () => {
-    this.setState({ phoneNumbers: this.state.phoneNumbers.filter((s, phIndex) => index !== phIndex) })
-  }
-  removeEmail = (index) => () => {
-    this.setState({ emails: this.state.emails.filter((s, emIndex) => index !== emIndex) })
-  }
+    addPhone = () => {
+        this.setState({ phone_changes: this.state.phone_changes.concat([{ number: '', typeId: 1  }]) })
+    }
+    addEmail = () => {
+        this.setState({ emails: this.state.emails.concat([{ email: '', typeId: 1  }]) })
+    }
 
+    
+    removePhone = (index) => () => {
+        this.setState({ phone_changes: this.state.phone_changes.filter((s, phIndex) => index !== phIndex) })
+        _.forEach(this.state.phone_changes, (value, phIndex) => {
+            if(phIndex === index && value.id) {
+                let removeId = {"delete": 1}
+                let deleted = Object.assign(value, removeId)
+                this.setState({ deleted: deleted })
+            }
+        })
+    }
+    removeEmail = (index) => () => {
+        this.setState({ emails: this.state.emails.filter((s, emIndex) => index !== emIndex) })
+    }
 
-
-  removePhoneValue = (index) => (e) => {
-    const newphoneNumbers = this.state.phoneNumbers.map((phItem, phIndex) => {
+    removePhoneValue = (index) => (e) => {
+        const newphoneNumbers = this.state.phone_changes.map((phItem, phIndex) => {
         if (index !== phIndex) return phItem
         return { ...phItem, number: '' }
     })
-    this.setState({ phoneNumbers: newphoneNumbers })
-  }
-  removeEmailValue = (index) => (e) => {
-    const newEmailNumbers = this.state.emails.map((emItem, emIndex) => {
+        this.setState({ phone_changes: newphoneNumbers })
+    }
+    removeEmailValue = (index) => (e) => {
+        const newEmailNumbers = this.state.emails.map((emItem, emIndex) => {
         if (index !== emIndex) return emItem
         return { ...emItem, email: '' }
     })
-    this.setState({ emails: newEmailNumbers })
-  }
-  removeNotes = () => {
-    this.setState({ notes: '' })
-  }
-
-
-
-
-  send = (e, data) => {
-    e.preventDefault()
-    // data = [...this.state.phoneNumbers, ...this.state.emails]
-    data = {
-        "name": "Ivan Ivanov",
-        "company": "Coca Cola",
-        "position": "Senior JavaScript developer",
-        "notes": this.state.notes,
-        "phones": this.state.phoneNumbers,
-        "emails": this.state.emails,
-        "addresses": []	
+        this.setState({ emails: newEmailNumbers })
     }
-    this.props.addContact(data)
-  }
+    removeNotes = () => {
+        this.setState({ notes: '' })
+    }
 
-render() {
-    let contactList = _.map(this.state.phoneNumbers, (phItem, index) => {
+    cancelEdit = () => {
+        this.setState({cancleEdit: true}, this.props.cancelEdit(this.state.cancleEdit))
+    }
+
+  render() {
+    console.log('===STATE===', this.state.phone_changes)
+    let contactList = _.map(this.state.phone_changes, (phItem, index) => {
         return (
         <tr key ={index} className = "formset-item phone-number">
             <td>
@@ -229,39 +256,46 @@ render() {
             </tr>
         )
     })
-    return(
-        <div id={this.props.idName} className="modal fade scroller-block" data-caller role="dialog">
-            <input type="hidden" name="csrfmiddlewaretoken" value="AinvhyweYspyycRHe5TUbdO4M3dJllubn0M7UN3i8alOZTbVazY5MwBrp5o8Z4xW"/>
-            <div className="modal-dialog add-modal">
-                <div className="modal-content create-contact-popup--content pr">
-                <div className="list-search-form__autocomplete-box">
-                    <h3 className="list-search-form__autocomplete-title fs20">Create contact</h3>
-                    <button className="list-search-form__autocomplete-close sprite hover-active-opacity" type="button" data-toggle="modal" data-target="#add-contact-modal"></button>
-                    <form id="_contact-create-form">
+    return (
+      <div>
+          <ul className="message-top-list clear-fix">
+            <li className="message-top-list__item fr">
+                <button className="message-top-list__button sprite-b center-center-before pr hover-active-opacity-before remove-icon" type="button"></button>
+            </li>
+        </ul>     
+        <div className="call-log-sidebar__main-box scroller-block">
+            <div className="call-log-sidebar__wrapper">
+            <form id="_contact-create-form">
                     <div className="call-log-person-box call-log-person-box--big pr clear-fix">
                         <div className="call-log-person-box__left-box fl tc">
                         <input type="file" className="dn choose-image-input" name="contact-avatar" id="contact-avatar"/>
                         <label htmlFor="contact-avatar" className="call-log-person-box__avatar sprite-b center-center-before db tc fs18 call-log-person-box__avatar--edit hover-active-opacity select-none">
                             <span className="call-log-person-box__avatar-text pr">+ <span className="font-bold">Add photo</span></span>
                         </label>
+                        <div className="edit-btn-container">
+                            <button onClick={this.saveEdit} className="blue-btn ver-top-box font-bold fs18 hover-active-opacity" type="submit">Save</button>
+                        </div>
+                        <div className="edit-btn-container">
+                            <button onClick={this.cancelEdit} className="cancel-btn ver-top-box font-bold fs18 hover-active-opacity" type="button">Cancel</button>
+                        </div>
                         </div>
                         <div className="call-log-person-box__right-box create-contact-popup">
                         <div className="form-box form-box--large-bottom-margin">
                             <div className="person-name-box pr">
-                                <input className="person-name font-bold fs30" id="id_name" maxLength="300" name="name" placeholder="Название" type="text"/>
-                            <button className="remove-value remove-value--gray sprite delete-input-text hover-active-opacity" type="button"></button>
+                                <input className="person-name font-bold fs30" id="id_name" maxLength="300" name="name" value={this.state.name} onChange={(e) => this.nameChange(e)}  type="text"/>
+                            <button onClick={this.removeName} className="remove-value remove-value--gray sprite delete-input-text hover-active-opacity" type="button"></button>
                             </div>
                         </div>
                         <table className="call-log-person-info mb-none">
                         <tbody>
                         <tr>
                             <td className="call-log-person-item">
-                            <input className="fs18 roboto-medium" id="id_company" maxLength="100" name="company" placeholder="организация" type="text"/>
+                            <input className="fs18 roboto-medium" id="id_company" maxLength="100" name="company" value={this.state.company} onChange={(e) => this.companyChange(e)} type="text"/>
                             </td>
                         </tr>
                         <tr>
                             <td className="call-log-person-item">
-                            <input className="roboto-medium italic" id="id_position" maxLength="100" name="position" placeholder="должность" type="text"/>
+                            <input className="roboto-medium italic" id="id_position" maxLength="100" name="position" value={this.state.position} onChange={(e) => this.positionChange(e)} type="text"/>
                         </td>
                             </tr>
                         </tbody>
@@ -414,7 +448,7 @@ render() {
                                                 cols="40" 
                                                 id="id_notes" 
                                                 name="notes" 
-                                                placeholder="Write your comments here" 
+                                                placeholder={this.state.notes} 
                                                 rows="10"/>
                                             <button
                                             onClick={this.removeNotes}
@@ -431,27 +465,12 @@ render() {
                         </table>
                         </div>
                     </div>
-                    <div className="tr">
-                        <button type="button" className="font-bold fs18 btn gray-btn ver-top-box fb hover-active-opacity" data-dismiss="modal">Cancel</button>
-                        <button onClick={(e) =>this.send(e)} className="font-bold fs18 btn blue-btn ver-top-box fb hover-active-opacity">Create</button>
-                    </div>
-                    </form>
-                    </div>
-                </div>
+                </form>
             </div>
         </div>
-    )}
+      </div>
+    )
+  }
 }
 
-const mapStateToProps = (store) => {
-    return {
-      contacts: store.contacts.contacts,
-      id: store.contacts.id
-    }
-  }
-  
-  const mapDispatchToProps = (dispatch) => ({
-    addContact: (phoneData) => dispatch(addContact(phoneData))
-  })
-
-export default connect(mapStateToProps, mapDispatchToProps)(ModalAddContact)
+export default ContactsEdit

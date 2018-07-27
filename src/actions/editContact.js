@@ -1,16 +1,16 @@
 import {Http} from './requests'
 
 export const consts = {  
-    ADD_CONTACT: 'ADD_CONTACT',
+    EDIT_CONTACT: 'EDIT_CONTACT',
 }
 
-export default function addContact(phoneData) {
+export default function editContact(data) {
     return dispatch => {
-        const url = 'https://prod.mcontrol.com/contacts/create'
-        Http.post(url, phoneData)
+        const url = 'https://prod.mcontrol.com/contacts/edit'
+        Http.post(url, data)
         .then((response) => {
             dispatch({
-                type: 'ADD_CONTACT',
+                type: 'EDIT_CONTACT',
                 payload: response.data
             })
         })

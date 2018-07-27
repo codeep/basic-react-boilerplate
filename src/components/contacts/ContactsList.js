@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import * as _ from 'lodash'
 import ModalAddContact from '../modals/ModalAddContact'
+import SelectList from './SelectList'
 
 class Contacts extends Component {
   constructor(props) {
@@ -10,7 +11,19 @@ class Contacts extends Component {
 
   state = {
     tabIndex: 0,
-    modalName: 'add-contact-modal'
+    modalName: 'add-contact-modal',
+    searchTerm: '',
+    showSelect: true
+  }
+
+  handleSearchContact = (value) => {
+    this.setState({ searchTerm: value }, () => this.props.searchContact(this.state.searchTerm))
+  }
+
+  
+
+  selectListToggle = () => {
+    this.setState({ showSelect: !this.state.showSelect })
   }
 
   componentDidMount () {
@@ -37,6 +50,10 @@ class Contacts extends Component {
   }
 
   render() {
+    // let searchContact  = this.props.contacts;
+    // searchContact = _.filter(searchContact, (item)=>{
+    //   return _.includes(item.name, this.state.searchTerm.toLocaleLowerCase())
+    // })
     let contactList = _.map(this.props.contacts, (value, index) => {
     return (
       <span key={index}>
@@ -67,26 +84,35 @@ class Contacts extends Component {
         />
         {/* SEARCH */}
         <div className='list-search-form__box pr'>
-          <input id="contact-search" className="list-search-form__text-field list-search-form__large-field" type="text" name="main-search" placeholder="Search/" />
+          <input 
+          onChange={(e) => this.handleSearchContact(e.target.value)}
+          value={this.state.searchTerm}
+          id="contact-search" 
+          className="list-search-form__text-field list-search-form__large-field"  type="text" name="main-search" placeholder="Search/" />
           <input className="list-search-form__btn sprite"/>
           <button  data-toggle="modal" data-target="#add-contact-modal" className="add-btn" type="button"></button>
         </div>
-        {/* FILTERS */}
-        <div className="record-box record-box--for-contacts pr _list-header">
-          <span>Number of contacts: 
-            <span id="contact-counter">{this.props.contacts.length}</span>
-          </span>
-          <div className="record-box__list">
-            <a href="#" className="record-box__list-link fr font-bold _switch-select-mode">Select</a>
+
+        {this.state.showSelect ? <div>
+          <div className="record-box record-box--for-contacts pr _list-header">
+            <span>Number of contacts: 
+              <span id="contact-counter">{this.props.contacts.length}</span>
+            </span>
+            <div className="record-box__list">
+              <a onClick={this.selectListToggle} className="record-box__list-link fr font-bold _switch-select-mode">Select</a>
+            </div>
           </div>
-        </div>
-        {/* LIST */}
-        <div 
-        // ref={this.listRef} 
-        className="aaa record-group record-group--for-contacts scroller-block _list-container"
-        >
-          {contactList}
-        </div>
+          <div 
+          // ref={this.listRef} 
+          className="aaa record-group record-group--for-contacts scroller-block _list-container"
+          >
+            {contactList}
+          </div>
+        </div> : 
+        <SelectList
+        selectListToggle={this.selectListToggle}
+        />}
+        
       </aside>
     )
   }
