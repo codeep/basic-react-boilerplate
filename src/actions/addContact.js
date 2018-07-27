@@ -5,9 +5,8 @@ export const consts = {
 }
 
 export default function addContact(phoneData) {
-    console.log('ACTIONS')
     return dispatch => {
-        const url = 'https://prod.mcontrol.com/contact/create'
+        const url = 'https://prod.mcontrol.com/contacts/create'
         Http.post(url, phoneData)
         .then((response) => {
             dispatch({

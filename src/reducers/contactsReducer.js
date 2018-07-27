@@ -1,8 +1,9 @@
 import { consts } from '../actions/contactsActions'
+import { constss } from '../actions/searchContact'
 
 const initial = {
   contacts: [],
-  id: []
+  id: [],
 }
 
 export default function reducer(state = initial, action) {
@@ -17,6 +18,12 @@ export default function reducer(state = initial, action) {
       return {
         ...state,
         id: action.payload
+      }
+    }
+    case constss.SEARCH_CONTACT: {
+      return {
+        ...state,
+        contacts: action.payload
       }
     }
     default:

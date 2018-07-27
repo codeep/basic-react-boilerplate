@@ -4845,3 +4845,17 @@ footer {
     height: 6px;
     width: 25px;
 }
+
+/* NEW */
+.call-log-person-info > tbody > tr > td > input {
+    border: 1px solid #DEDEDE;
+}
+.selected-contact > .choose-form  > .choose-form__box > label:hover {
+    opacity: 1
+}
+.selected-contact > .choose-form  > .choose-form__box > label:before {
+    background-color: #757575;
+    display: block;
+    height: 10px;
+    width: 10px;
+}
