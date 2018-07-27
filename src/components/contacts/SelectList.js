@@ -41,7 +41,7 @@ class Selectlist extends Component {
   }
 
   toggleContact = (id, value) => {
-    console.log("toggleContact", id, value)
+    // console.log("toggleContact", id, value)
     this.setState(prevState => {
       if (prevState.selectedIds.includes(id)) {
         return {
@@ -55,7 +55,7 @@ class Selectlist extends Component {
   }
 
   toggleSelectAllContacts = () => {
-    console.log("toggleSelectAllContacts")
+    // console.log("toggleSelectAllContacts")
     this.setState(prevState => {
       if (this.allSelected(prevState)) {
         return {
@@ -69,7 +69,7 @@ class Selectlist extends Component {
   }
 
   render() {
-    console.log('===selectedIds===', this.state.selectedIds)
+    // console.log('===selectedIds===', this.state.selectedIds)
     let selectList = this.state.list.map((value, index) => {
       return (
         <div
