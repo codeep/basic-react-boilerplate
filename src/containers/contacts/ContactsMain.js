@@ -57,6 +57,7 @@ class ContactsMain extends Component {
           cancelEdit={this.cancelEdit}
           id={this.props.id}
           editContact={this.props.editContact}
+          types={this.props.types}
           />
         }
         
@@ -66,9 +67,11 @@ class ContactsMain extends Component {
 }
 
 const mapStateToProps = (store) => {
+  console.log('store', store)
   return {
     contacts: store.contacts.contacts,
     id: store.contacts.id,
+    types: store.contacts.types
   }
 }
 

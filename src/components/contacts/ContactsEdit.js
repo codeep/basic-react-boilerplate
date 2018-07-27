@@ -138,6 +138,16 @@ class ContactsEdit extends Component {
     }
 
   render() {
+    let phoneTypes = _.map(this.props.types.phoneTypes, (item, index) => {
+        return (
+            <option key={index} value={item.id}>{item.name}</option>
+        )
+    })
+    let emailTypes = _.map(this.props.types.emailTypes, (item, index) => {
+        return (
+            <option key={index} value={item.id}>{item.name}</option>
+        )
+    })
     let contactList = _.map(this.state.phone_changes, (phItem, index) => {
         return (
         <tr key ={index} className = "formset-item phone-number">
@@ -155,26 +165,7 @@ class ContactsEdit extends Component {
                     className="_required" 
                     id="id_phone-create-0-type" 
                     name="phone-create-0-type">
-                        <option value="1">Домашний</option>
-                        <option value="2">Мобильный</option>
-                        <option value="3">Рабочий</option>
-                        <option value="4">Факс (рабочий)</option>
-                        <option value="5">Факс (домашний)</option>
-                        <option value="6">Пейджер</option>
-                        <option value="7">Другое</option>
-                        <option value="8">Callback</option>
-                        <option value="9">Car</option>
-                        <option value="10">Company main</option>
-                        <option value="11">ISDN</option>
-                        <option value="12">Основной</option>
-                        <option value="13">Факс (другой)</option>
-                        <option value="14">Радио</option>
-                        <option value="15">Телекс</option>
-                        <option value="16">TTY TDD</option>
-                        <option value="17">Рабочий мобильный</option>
-                        <option value="18">Рабочий мобильный</option>
-                        <option value="19">Рабочий пейджер</option>
-                        <option value="20">ММС</option>
+                    {phoneTypes}
                     </select>
                 </div>
             </td>
@@ -218,11 +209,7 @@ class ContactsEdit extends Component {
                         id="id_email-create-0-type" 
                         name="email-create-0-type" 
                         required="">
-                            <option value="1">Home</option>
-                            <option value="2">Work email</option>
-                            <option value="3">Other email</option>
-                            <option value="4">Mobile email</option>
-                            <option value="999">Unknown</option>
+                        {emailTypes}
                         </select>
                     </div>
                 </td>
