@@ -186,6 +186,13 @@ class Selectlist extends Component {
           className="record-group record-group--for-contacts scroller-block"
         >
           {selectList}
+        {
+        this.state.selectedIds.length !== 0 
+        &&
+        <div className="select-list-counter">
+          <p>{this.state.selectedIds.length} contact(s) selected</p>
+        </div>
+        }
         </div>
       </div>
     )

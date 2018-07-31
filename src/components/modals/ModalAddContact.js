@@ -2,10 +2,7 @@ import React, { Component } from 'react'
 import * as _ from 'lodash'
 import  addContact  from '../../actions/addContact'
 import { connect } from 'react-redux'
-
-class ModalAddContact extends Component {
-
-  state = {
+const initialState = {
     phoneNumbers: [],
     emails: [],
     addresses: [
@@ -18,10 +15,33 @@ class ModalAddContact extends Component {
             type: 1
         }
     ],
-    notes: ''
+    notes: '',
+    name: '',
+    company: '',
+    position: '',
+    showModal: false
   }
-  
 
+class ModalAddContact extends Component {
+
+  state = initialState
+
+  resetData = () => {
+    this.setState(initialState);
+  }
+
+  removeName = () => {
+    this.setState({ name: '' })
+  }
+  nameChange = (e) => {
+    this.setState({ name: e.target.value})
+  }
+  companyChange = (e) => {
+    this.setState({ company: e.target.value})
+ }
+ positionChange = (e) => {
+    this.setState({ position: e.target.value})
+ }
 
   changePhoneName = (index) => (e) => {
     const newPhoneNumbers = this.state.phoneNumbers.map((phItem, phIndex) => {
@@ -76,7 +96,6 @@ class ModalAddContact extends Component {
   }
 
 
-
   removePhoneValue = (index) => (e) => {
     const newphoneNumbers = this.state.phoneNumbers.map((phItem, phIndex) => {
         if (index !== phIndex) return phItem
@@ -95,16 +114,33 @@ class ModalAddContact extends Component {
     this.setState({ notes: '' })
   }
 
+  componentDidMount() {
+    document.addEventListener('mousedown', this.handleClickOutside);
+  }
 
+  componentWillUnmount() {
+    document.removeEventListener('mousedown', this.handleClickOutside);
+  }
 
+  setWrapperRef =(node)=> {
+    this.wrapperRef = node;
+  }
+
+  handleClickOutside =() => {
+    this.setState({showModal: !this.state.showModal})
+    if(this.state.showModal) {
+        this.resetData()
+    }
+  }
+  
 
   send = (e, data) => {
     e.preventDefault()
     // data = [...this.state.phoneNumbers, ...this.state.emails]
     data = {
-        "name": "Ivan Ivanov",
-        "company": "Coca Cola",
-        "position": "Senior JavaScript developer",
+        "name": this.state.name,
+        "company": this.state.company,
+        "position": this.state.position,
         "notes": this.state.notes,
         "phones": this.state.phoneNumbers,
         "emails": this.state.emails,
@@ -112,8 +148,8 @@ class ModalAddContact extends Component {
     }
     this.props.addContact(data)
   }
-
-render() {
+  
+  render() {
     let contactList = _.map(this.state.phoneNumbers, (phItem, index) => {
         return (
         <tr key ={index} className = "formset-item phone-number">
@@ -230,13 +266,19 @@ render() {
         )
     })
     return(
-        <div id={this.props.idName} className="modal fade scroller-block" data-caller role="dialog">
-            <input type="hidden" name="csrfmiddlewaretoken" value="AinvhyweYspyycRHe5TUbdO4M3dJllubn0M7UN3i8alOZTbVazY5MwBrp5o8Z4xW"/>
-            <div className="modal-dialog add-modal">
-                <div className="modal-content create-contact-popup--content pr">
+        <div>
+            {/* {this.props.addContactStatus !== 200 ? '' 
+            : 
+            <div className="notification fs14 tc "  >
+            :) Changes to the contact have been saved.
+            </div>} */}
+           <div id={this.props.idName} className=" modal fade scroller-block" ref={this.setWrapperRef}  role="dialog" >
+           <input type="hidden" name="csrfmiddlewaretoken" value="AinvhyweYspyycRHe5TUbdO4M3dJllubn0M7UN3i8alOZTbVazY5MwBrp5o8Z4xW"/>
+            <div className="modal-dialog add-modal"> 
+                 <div className="modal-content create-contact-popup--content pr"> 
                 <div className="list-search-form__autocomplete-box">
                     <h3 className="list-search-form__autocomplete-title fs20">Create contact</h3>
-                    <button className="list-search-form__autocomplete-close sprite hover-active-opacity" type="button" data-toggle="modal" data-target="#add-contact-modal"></button>
+                    <button className="list-search-form__autocomplete-close sprite hover-active-opacity" type="button" onClick={this.resetData} data-toggle="modal" data-target="#add-contact-modal"></button>
                     <form id="_contact-create-form">
                     <div className="call-log-person-box call-log-person-box--big pr clear-fix">
                         <div className="call-log-person-box__left-box fl tc">
@@ -248,20 +290,20 @@ render() {
                         <div className="call-log-person-box__right-box create-contact-popup">
                         <div className="form-box form-box--large-bottom-margin">
                             <div className="person-name-box pr">
-                                <input className="person-name font-bold fs30" id="id_name" maxLength="300" name="name" placeholder="Название" type="text"/>
-                            <button className="remove-value remove-value--gray sprite delete-input-text hover-active-opacity" type="button"></button>
+                                <input className="person-name font-bold fs30" value={this.state.name} onChange={(e) => this.nameChange(e)} id="id_name" maxLength="300" name="name" placeholder="Название" type="text"/>
+                            <button onClick={this.removeName} className="remove-value remove-value--gray sprite delete-input-text hover-active-opacity" type="button"></button>
                             </div>
                         </div>
                         <table className="call-log-person-info mb-none">
                         <tbody>
                         <tr>
                             <td className="call-log-person-item">
-                            <input className="fs18 roboto-medium" id="id_company" maxLength="100" name="company" placeholder="организация" type="text"/>
+                            <input className="fs18 roboto-medium" id="id_company" maxLength="100" name="company" value={this.state.company} onChange={(e) => this.companyChange(e)} type="text"/>
                             </td>
                         </tr>
                         <tr>
                             <td className="call-log-person-item">
-                            <input className="roboto-medium italic" id="id_position" maxLength="100" name="position" placeholder="должность" type="text"/>
+                            <input className="roboto-medium italic" id="id_position" maxLength="100" name="position" value={this.state.position} onChange={(e) => this.positionChange(e)} type="text"/>
                         </td>
                             </tr>
                         </tbody>
@@ -432,12 +474,13 @@ render() {
                         </div>
                     </div>
                     <div className="tr">
-                        <button type="button" className="font-bold fs18 btn gray-btn ver-top-box fb hover-active-opacity" data-dismiss="modal">Cancel</button>
-                        <button onClick={(e) =>this.send(e)} className="font-bold fs18 btn blue-btn ver-top-box fb hover-active-opacity">Create</button>
+                        <button type="button" className="font-bold fs18 btn gray-btn ver-top-box fb hover-active-opacity" onClick={this.resetData} data-dismiss="modal">Cancel</button>
+                        <button onClick={(e) =>this.send(e)} className="font-bold fs18 btn blue-btn ver-top-box fb hover-active-opacity" data-dismiss="modal">Create</button>
                     </div>
                     </form>
                     </div>
-                </div>
+                 </div> 
+                 </div>
             </div>
         </div>
     )}
@@ -446,7 +489,8 @@ render() {
 const mapStateToProps = (store) => {
     return {
       contacts: store.contacts.contacts,
-      id: store.contacts.id
+      id: store.contacts.id,
+      addContactStatus: store.contacts.addContactStatus
     }
   }
   

@@ -22,10 +22,12 @@ class ContactsEdit extends Component {
         name: this.props.id.name,
         company: this.props.id.company,
         position: this.props.id.position
-      }
-      
+    }
 
-    
+    componentDidMount() {
+        this.props.typesAction()
+    }
+      
     nameChange = (e) => {
         this.setState({ name: e.target.value})
     }
@@ -58,7 +60,7 @@ class ContactsEdit extends Component {
         this.setState({ notes: e.target.value })
     }
     
-
+    
 
 
     changePhoneType = (index) => (e) => {
@@ -140,7 +142,16 @@ class ContactsEdit extends Component {
     }
 
   render() {
-    console.log('===STATE===', this.state.phone_changes)
+    let phoneTypes = _.map(this.props.types.phoneTypes, (item, index) => {
+        return (
+            <option key={index} value={item.id}>{item.name}</option>
+        )
+    })
+    let emailTypes = _.map(this.props.types.emailTypes, (item, index) => {
+        return (
+            <option key={index} value={item.id}>{item.name}</option>
+        )
+    })
     let contactList = _.map(this.state.phone_changes, (phItem, index) => {
         return (
         <tr key ={index} className = "formset-item phone-number">
@@ -158,26 +169,7 @@ class ContactsEdit extends Component {
                     className="_required" 
                     id="id_phone-create-0-type" 
                     name="phone-create-0-type">
-                        <option value="1">Домашний</option>
-                        <option value="2">Мобильный</option>
-                        <option value="3">Рабочий</option>
-                        <option value="4">Факс (рабочий)</option>
-                        <option value="5">Факс (домашний)</option>
-                        <option value="6">Пейджер</option>
-                        <option value="7">Другое</option>
-                        <option value="8">Callback</option>
-                        <option value="9">Car</option>
-                        <option value="10">Company main</option>
-                        <option value="11">ISDN</option>
-                        <option value="12">Основной</option>
-                        <option value="13">Факс (другой)</option>
-                        <option value="14">Радио</option>
-                        <option value="15">Телекс</option>
-                        <option value="16">TTY TDD</option>
-                        <option value="17">Рабочий мобильный</option>
-                        <option value="18">Рабочий мобильный</option>
-                        <option value="19">Рабочий пейджер</option>
-                        <option value="20">ММС</option>
+                    {phoneTypes}
                     </select>
                 </div>
             </td>
@@ -221,11 +213,7 @@ class ContactsEdit extends Component {
                         id="id_email-create-0-type" 
                         name="email-create-0-type" 
                         required="">
-                            <option value="1">Home</option>
-                            <option value="2">Work email</option>
-                            <option value="3">Other email</option>
-                            <option value="4">Mobile email</option>
-                            <option value="999">Unknown</option>
+                        {emailTypes}
                         </select>
                     </div>
                 </td>
@@ -257,7 +245,7 @@ class ContactsEdit extends Component {
         )
     })
     return (
-      <div>
+        <aside id="_contact-details-wrapper" className="call-log-sidebar clear-fix" data-contact-id="">
           <ul className="message-top-list clear-fix">
             <li className="message-top-list__item fr">
                 <button className="message-top-list__button sprite-b center-center-before pr hover-active-opacity-before remove-icon" type="button"></button>
@@ -282,7 +270,7 @@ class ContactsEdit extends Component {
                         <div className="call-log-person-box__right-box create-contact-popup">
                         <div className="form-box form-box--large-bottom-margin">
                             <div className="person-name-box pr">
-                                <input className="person-name font-bold fs30" id="id_name" maxLength="300" name="name" value={this.state.name} onChange={(e) => this.nameChange(e)}  type="text"/>
+                                <input className="person-name font-bold fs30" id="id_name" maxLength="300" name="name" value={this.state.name} onChange={(e) => this.nameChange(e)} placeholder="Название" type="text"/>
                             <button onClick={this.removeName} className="remove-value remove-value--gray sprite delete-input-text hover-active-opacity" type="button"></button>
                             </div>
                         </div>
@@ -468,7 +456,7 @@ class ContactsEdit extends Component {
                 </form>
             </div>
         </div>
-      </div>
+      </aside>
     )
   }
 }

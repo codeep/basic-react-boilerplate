@@ -1,6 +1,6 @@
 import {Http} from './requests'
 
-export const consts = {  
+export const constsss = {  
     ADD_CONTACT: 'ADD_CONTACT',
 }
 
@@ -11,7 +11,8 @@ export default function addContact(phoneData) {
         .then((response) => {
             dispatch({
                 type: 'ADD_CONTACT',
-                payload: response.data
+                payload: response.data,
+                status: response.status
             })
         })
         .catch((err) => {

@@ -1,4 +1,5 @@
 import { consts } from '../actions/contactsActions'
+import { constsss } from '../actions/addContact'
 import { constss } from '../actions/searchContact'
 
 const initial = {
@@ -24,6 +25,13 @@ export default function reducer(state = initial, action) {
       return {
         ...state,
         contacts: action.payload
+      }
+    }
+    case constsss.ADD_CONTACT: {
+      console.log('||REDUCER||', action.status)
+      return {
+        ...state,
+        addContactStatus: action.status
       }
     }
     default:
