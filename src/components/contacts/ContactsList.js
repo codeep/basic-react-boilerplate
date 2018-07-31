@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import * as _ from 'lodash'
 import ModalAddContact from '../modals/ModalAddContact'
 import SelectList from './SelectList'
+import Highlighter from "react-highlight-words";
+
 
 class Contacts extends Component {
   constructor(props) {
@@ -17,10 +19,10 @@ class Contacts extends Component {
   }
 
   handleSearchContact = (value) => {
-    this.setState({ searchTerm: value }, () => this.props.searchContact(this.state.searchTerm))
+    this.setState({ searchTerm: value }, () => {
+      this.props.searchContact(this.state.searchTerm)}
+    )
   }
-
-  
 
   selectListToggle = () => {
     this.setState({ showSelect: !this.state.showSelect })
@@ -49,6 +51,7 @@ class Contacts extends Component {
     }
   }
 
+
   render() {
     // let searchContact  = this.props.contacts;
     // searchContact = _.filter(searchContact, (item)=>{
@@ -67,6 +70,12 @@ class Contacts extends Component {
           <div className="accordion-box__right-box pr">
           <div className="table">
             <div className="table-cell">
+            <Highlighter
+              highlightClassName="term-highilght"
+              searchWords={[this.state.searchTerm]}
+              autoEscape={true}
+              textToHighlight={value.name}
+            />
               <div className="accordion-box__title font-bold _name">{value.name}</div>
               <div className="accordion-box__description fs14 _company">{value.company}</div>
               <div className="accordion-box__description fs14 italic _position">{value.position}</div>
@@ -88,9 +97,9 @@ class Contacts extends Component {
           onChange={(e) => this.handleSearchContact(e.target.value)}
           value={this.state.searchTerm}
           id="contact-search" 
-          className="list-search-form__text-field list-search-form__large-field"  type="text" name="main-search" placeholder="Search/" />
+          className="list-search-form__text-field list-search-form__large-field" type="text" name="main-search" placeholder="Search/" />
           <input className="list-search-form__btn sprite"/>
-          <button  data-toggle="modal" data-target="#add-contact-modal" className="add-btn" type="button"></button>
+          <button  data-toggle="modal" data-target="#add-contact-modal" onClick={this.handleOpenModal} className="add-btn" type="button"></button>
         </div>
 
         {this.state.showSelect ? <div>

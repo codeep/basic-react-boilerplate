@@ -22,7 +22,11 @@ class ContactsEdit extends Component {
         name: this.props.id.name,
         company: this.props.id.company,
         position: this.props.id.position
-      }
+    }
+
+    componentDidMount() {
+        this.props.typesAction()
+    }
       
     nameChange = (e) => {
         this.setState({ name: e.target.value})
@@ -266,7 +270,7 @@ class ContactsEdit extends Component {
                         <div className="call-log-person-box__right-box create-contact-popup">
                         <div className="form-box form-box--large-bottom-margin">
                             <div className="person-name-box pr">
-                                <input className="person-name font-bold fs30" id="id_name" maxLength="300" name="name" value={this.state.name} onChange={(e) => this.nameChange(e)}  type="text"/>
+                                <input className="person-name font-bold fs30" id="id_name" maxLength="300" name="name" value={this.state.name} onChange={(e) => this.nameChange(e)} placeholder="Название" type="text"/>
                             <button onClick={this.removeName} className="remove-value remove-value--gray sprite delete-input-text hover-active-opacity" type="button"></button>
                             </div>
                         </div>

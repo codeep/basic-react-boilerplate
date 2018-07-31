@@ -4870,3 +4870,7 @@ footer {
     padding: 2% 5%;
     font-size: 14px;
 }
+.term-highilght {
+    background-color: #2171ec;
+    color: #fff;
+}

@@ -6,6 +6,7 @@ import getContact, {getprofile} from '../../actions/contactsActions'
 import editContact from '../../actions/editContact'
 import deleteContact from '../../actions/deleteContact'
 import searchContact from '../../actions/searchContact'
+import typesAction from '../../actions/typesAction'
 import { connect } from 'react-redux'
 
 class ContactsMain extends Component {
@@ -22,7 +23,7 @@ class ContactsMain extends Component {
 
   getItem = (contact) => {
     this.props.history.push(`/contacts/profile?id=${contact.serverId}`)
-    this.setState({ deleteId: contact.serverIde, editable: false, showDetailComponent: true})
+    this.setState({ deleteId: contact.serverId, editable: false, showDetailComponent: true})
     this.props.getprofile(contact.serverId)
   }
 
@@ -58,6 +59,7 @@ class ContactsMain extends Component {
           id={this.props.id}
           editContact={this.props.editContact}
           types={this.props.types}
+          typesAction={this.props.typesAction}
           />
         }
         
@@ -67,11 +69,10 @@ class ContactsMain extends Component {
 }
 
 const mapStateToProps = (store) => {
-  console.log('store', store)
   return {
     contacts: store.contacts.contacts,
     id: store.contacts.id,
-    types: store.contacts.types
+    types: store.types.types
   }
 }
 
@@ -80,7 +81,8 @@ const mapDispatchToProps = (dispatch) => ({
   getprofile: (id) => dispatch(getprofile(id)),
   editContact: (data) => dispatch(editContact(data)),
   deleteContact: (data) => dispatch(deleteContact(data)),
-  searchContact: (data) => dispatch(searchContact(data))
+  searchContact: (data) => dispatch(searchContact(data)),
+  typesAction: () => dispatch(typesAction())
 })
 
 const ContactsMainContainer = (connect(mapStateToProps, mapDispatchToProps)(ContactsMain))

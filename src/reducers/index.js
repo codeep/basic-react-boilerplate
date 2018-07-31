@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 import contacts from './contactsReducer';
-// import searchContacts from './searchReducer'
+import types from './typesReducer'
 
 const stores = combineReducers({
     contacts,
-    // searchContacts
+    types
 });
 
 export default stores;
