@@ -14,7 +14,8 @@ class ContactsMain extends Component {
   state = {
     deleteId: '',
     editable: false,
-    showDetailComponent: false
+    showDetailComponent: false,
+    contactDetail: []
   }
 
   componentDidMount () {
@@ -22,9 +23,9 @@ class ContactsMain extends Component {
   }
 
   getItem = (contact) => {
-    this.props.history.push(`/contacts/profile?id=${contact.serverId}`)
-    this.setState({ deleteId: contact.serverId, editable: false, showDetailComponent: true})
-    this.props.getprofile(contact.serverId)
+    this.props.history.push(`/contacts/profile?id=${contact.id}`)
+    this.setState({ deleteId: contact.serverId, editable: false, showDetailComponent: true, contactDetail: contact})
+    // this.props.getprofile(contact.id)
   }
 
   editableContact = () => {
@@ -42,12 +43,13 @@ class ContactsMain extends Component {
           getItem={this.getItem}
           contacts={this.props.contacts}
           searchContact={this.props.searchContact}
+          fetch={this.props.fetch}
         />
         {
           !this.state.editable
           ?
           ( this.state.showDetailComponent && <ContactsDetails 
-            id={this.props.id}
+            id={this.state.contactDetail}
             editContact={this.props.editContact}
             deleteId={this.state.deleteId}
             deleteContact={this.props.deleteContact}
@@ -56,7 +58,7 @@ class ContactsMain extends Component {
           :
           <ContactsEdit
           cancelEdit={this.cancelEdit}
-          id={this.props.id}
+          id={this.state.contactDetail}
           editContact={this.props.editContact}
           types={this.props.types}
           typesAction={this.props.typesAction}
@@ -72,7 +74,8 @@ const mapStateToProps = (store) => {
   return {
     contacts: store.contacts.contacts,
     id: store.contacts.id,
-    types: store.types.types
+    types: store.types.types,
+    fetch: store.contacts.fetch
   }
 }
 

@@ -8,29 +8,26 @@ import Highlighter from "react-highlight-words";
 class Contacts extends Component {
   constructor(props) {
     super(props);
-    // this.listRef = React.createRef();
   }
 
   state = {
     tabIndex: 0,
     modalName: 'add-contact-modal',
     searchTerm: '',
+    sort: '',
     showSelect: true
   }
 
   handleSearchContact = (value) => {
-    this.setState({ searchTerm: value }, () => {
-      this.props.searchContact(this.state.searchTerm)}
-    )
+    this.setState({ searchTerm: value })
+  }
+
+  componentWillMount() {
+    this.setState({sort: this.state.sort === 'asc' ? 'desc' : 'asc'})
   }
 
   selectListToggle = () => {
     this.setState({ showSelect: !this.state.showSelect })
-  }
-
-  componentDidMount () {
-    // this.listRef.current.blur()
-    // console.log('did', this.listRef.current)
   }
 
   getContact = (e, value, index) => {
@@ -53,11 +50,20 @@ class Contacts extends Component {
 
 
   render() {
-    // let searchContact  = this.props.contacts;
-    // searchContact = _.filter(searchContact, (item)=>{
-    //   return _.includes(item.name, this.state.searchTerm.toLocaleLowerCase())
-    // })
-    let contactList = _.map(this.props.contacts, (value, index) => {
+    let searchContact  = this.props.contacts;
+    searchContact = _.filter(searchContact, (item)=>{
+      //get phones and email from array START
+      let phones, emails
+      _.forEach(item.phones, item => phones = item.number)
+      _.forEach(item.emails, item => emails = item.email)
+      //END
+      return [item.name, item.email, item.company, item.position, phones, emails].some(field => field && _.includes(field.toLocaleLowerCase(), this.state.searchTerm.toLocaleLowerCase()));
+    })
+    if(this.state.sort !== '') {
+      searchContact = _.orderBy(searchContact, 'name', this.state.sort);
+    }
+    let contactList = _.map(searchContact, (value, index) => {
+    let terms = value.name | value.position
     return (
       <span key={index}>
         <div 
@@ -70,15 +76,33 @@ class Contacts extends Component {
           <div className="accordion-box__right-box pr">
           <div className="table">
             <div className="table-cell">
-            <Highlighter
-              highlightClassName="term-highilght"
-              searchWords={[this.state.searchTerm]}
-              autoEscape={true}
-              textToHighlight={value.name}
-            />
-              <div className="accordion-box__title font-bold _name">{value.name}</div>
-              <div className="accordion-box__description fs14 _company">{value.company}</div>
-              <div className="accordion-box__description fs14 italic _position">{value.position}</div>
+              <div className="accordion-box__title font-bold _name">
+                <Highlighter
+                  highlightClassName="term-highilght"
+                  searchWords={[this.state.searchTerm]}
+                  autoEscape={true}
+                  textToHighlight={`${value.name}`}
+                  className="accordion-box__title font-bold _name"
+                />
+            </div>
+              {value.company && <div className="accordion-box__description fs14 _company">
+                <Highlighter
+                  highlightClassName="term-highilght"
+                  searchWords={[this.state.searchTerm]}
+                  autoEscape={true}
+                  textToHighlight={`${value.company}`}
+                  className="accordion-box__title _name"
+                />
+            </div>}
+              {value.position && <div className="accordion-box__description fs14 italic _position">
+                <Highlighter
+                  highlightClassName="term-highilght"
+                  searchWords={[this.state.searchTerm]}
+                  autoEscape={true}
+                  textToHighlight={`${value.position}`}
+                  className="accordion-box__title _name"
+                />
+            </div>}
             </div>
           </div>
           </div>
@@ -105,17 +129,16 @@ class Contacts extends Component {
         {this.state.showSelect ? <div>
           <div className="record-box record-box--for-contacts pr _list-header">
             <span>Number of contacts: 
-              <span id="contact-counter">{this.props.contacts.length}</span>
+              <span id="contact-counter">{this.props.fetch ? searchContact.length : ''}</span>
             </span>
             <div className="record-box__list">
               <a onClick={this.selectListToggle} className="record-box__list-link fr font-bold _switch-select-mode">Select</a>
             </div>
           </div>
           <div 
-          // ref={this.listRef} 
           className="aaa record-group record-group--for-contacts scroller-block _list-container"
           >
-            {contactList}
+            {this.props.fetch ? contactList : <div style={{display: 'flex',justifyContent:'center'}}>Loading...</div>}
           </div>
         </div> : 
         <SelectList

@@ -7,7 +7,6 @@
 - React 16 and Webpack 4 used!
 
 ## To start using :
-`git clone https://github.com/elinahovakimyan/react-boilerplate.git`
 
 `cd react-boilerplate`
 
@@ -15,4 +14,4 @@
 
 ### For development run `npm run dev`
 
-### For production run `npm start`
+### For production run `npm startDev`
