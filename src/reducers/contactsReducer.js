@@ -5,6 +5,7 @@ import { constss } from '../actions/searchContact'
 const initial = {
   contacts: [],
   id: [],
+  fetch: false
 }
 
 export default function reducer(state = initial, action) {
@@ -12,7 +13,8 @@ export default function reducer(state = initial, action) {
     case consts.GET_CONTACTS: {
       return {
         ...state,
-        contacts: action.payload
+        contacts: action.payload,
+        fetch: action.status === 200 ? true : false
       }
     }
     case consts.GET_ID: {
@@ -28,7 +30,6 @@ export default function reducer(state = initial, action) {
       }
     }
     case constsss.ADD_CONTACT: {
-      console.log('||REDUCER||', action.status)
       return {
         ...state,
         addContactStatus: action.status

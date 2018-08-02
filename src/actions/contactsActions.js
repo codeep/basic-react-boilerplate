@@ -14,7 +14,8 @@ export default function getContacts() {
         .then((response) => {
             dispatch({
                 type: 'GET_CONTACTS',
-                payload: response.data
+                payload: response.data,
+                status: response.status
             })
         })
         .catch((err) => {

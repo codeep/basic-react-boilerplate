@@ -128,15 +128,16 @@ class ModalAddContact extends Component {
 
   handleClickOutside =() => {
     this.setState({showModal: !this.state.showModal})
-    if(this.state.showModal) {
-        this.resetData()
-    }
+    if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
+        if(this.state.showModal === true) {
+            this.resetData()
+        }
+      }
   }
   
 
   send = (e, data) => {
     e.preventDefault()
-    // data = [...this.state.phoneNumbers, ...this.state.emails]
     data = {
         "name": this.state.name,
         "company": this.state.company,
