@@ -31,20 +31,28 @@ class Contacts extends Component {
   }
 
   getContact = (e, value, index) => {
+    
     this.props.getItem(value)
     this.setState({tabIndex: index})
   }
 
   onKeyPressed = (e) => {
-    if(e.keyCode === 40 && this.state.tabIndex !== this.props.contacts.length) {
-      this.setState({tabIndex : this.state.tabIndex + 1})
-      let value = this.props.contacts[this.state.tabIndex + 1]
-      this.props.getItem(value)
+
+    let searchContact  = this.props.contacts; 
+    if(this.state.sort !== '') {
+      searchContact = _.orderBy(searchContact, 'name', this.state.sort);
+    }
+    if(e.keyCode === 40 && this.state.tabIndex !== (this.props.contacts.length - 1)) {  
+      this.setState({tabIndex : this.state.tabIndex + 1}, () => {
+        let value = searchContact[this.state.tabIndex]
+        this.props.getItem(value)
+      })
     }
     if(e.keyCode === 38 && this.state.tabIndex !== 0) {
-      this.setState({tabIndex : this.state.tabIndex - 1})
-      let value = this.props.contacts[this.state.tabIndex - 1]
-      this.props.getItem(value)
+      this.setState({tabIndex : this.state.tabIndex - 1}, () => {
+        let value = searchContact[this.state.tabIndex]
+        this.props.getItem(value)
+      })
     }
   }
 
@@ -63,7 +71,6 @@ class Contacts extends Component {
       searchContact = _.orderBy(searchContact, 'name', this.state.sort);
     }
     let contactList = _.map(searchContact, (value, index) => {
-    let terms = value.name | value.position
     return (
       <span key={index}>
         <div 

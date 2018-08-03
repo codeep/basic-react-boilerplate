@@ -3,10 +3,8 @@ import React, { Component } from 'react'
 class ContactsEdit extends Component {
     state = {
         phone_changes: this.props.id.phones,
-        deleted: [
-
-        ],
-        emails: [],
+        deleted: [],
+        emails: this.props.id.emails,
         addresses: [
             {
                 street: '',
@@ -21,11 +19,19 @@ class ContactsEdit extends Component {
         cancleEdit: false,
         name: this.props.id.name,
         company: this.props.id.company,
-        position: this.props.id.position
+        position: this.props.id.position,
+
+        starPhone: false,
+        activePhoneId: null,
+        boolPhoneStar: false,
     }
 
     componentDidMount() {
         this.props.typesAction()
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({ activePhoneId: (nextProps.id.mainPhone && this.props.id.mainPhone[0].id) })
     }
       
     nameChange = (e) => {
@@ -83,13 +89,14 @@ class ContactsEdit extends Component {
         data = {
             "id": this.props.id.id,
             "name": this.state.name,
-            "phone_changes": this.state.phone_changes,
+            "phones": this.state.phone_changes,
             "company": this.state.company,
             "position": this.state.position,
-            "email_changes":this.state.emails,
+            "emails":this.state.emails,
             "addresses": [],
-            "notes": this.state.notes
+            "notes": this.state.notes,
         }
+        
         if(this.state.deleted.length !== 0) {
             this.state.phone_changes.push(this.state.deleted)
         }
@@ -98,10 +105,10 @@ class ContactsEdit extends Component {
 
 
     addPhone = () => {
-        this.setState({ phone_changes: this.state.phone_changes.concat([{ number: '', typeId: 1  }]) })
+        this.setState({ phone_changes: this.state.phone_changes.concat([{ number: '', typeId: 1, isMain: false  }]) })
     }
     addEmail = () => {
-        this.setState({ emails: this.state.emails.concat([{ email: '', typeId: 1  }]) })
+        this.setState({ emails: this.state.emails.concat([{ email: '', typeId: 1,  isMain: false  }]) })
     }
 
     
@@ -140,7 +147,12 @@ class ContactsEdit extends Component {
     cancelEdit = () => {
         this.setState({cancleEdit: true}, this.props.cancelEdit(this.state.cancleEdit))
     }
-
+    activeStarPhone = (item, index) => e => {
+        const starToggle = this.state.phone_changes 
+        const newStarToggle = starToggle.map((phone, i) => i === index ? { ...phone, isMain: true } : { ...phone, isMain: false });
+        this.setState({ phone_changes: newStarToggle, starPhone: index, boolPhoneStar: true  });
+    };
+     
   render() {
     let phoneTypes = _.map(this.props.types.phoneTypes, (item, index) => {
         return (
@@ -156,7 +168,7 @@ class ContactsEdit extends Component {
         return (
         <tr key ={index} className = "formset-item phone-number">
             <td>
-                <input id="id_phone-create-0-DELETE" name="phone-create-0-DELETE" type="checkbox" value=""/>
+                <input id="id_phone-create-0-DELETE" name="phone-create-0-DELETE" type="radio" value=""/>
                 <button
                 onClick={this.removePhone(index)}
                 className="remove-icon sprite hover-active-opacity _formset-remove-btn" 
@@ -165,6 +177,7 @@ class ContactsEdit extends Component {
             <td className="editable-table__select-row">
                 <div className="form-box form-box--large-bottom-margin pr">
                     <select
+                    value={phItem.typeId}
                     onChange={this.changePhoneType(index)}
                     className="_required" 
                     id="id_phone-create-0-type" 
@@ -190,7 +203,9 @@ class ContactsEdit extends Component {
                 </div>
             </td>
             <td>
-                <button type="button" className="person-info-box__tools-star ver-top-box sprite toggle-className-active"></button>
+                <button type="button" 
+                onClick={this.activeStarPhone(phItem, index)} 
+                className={`${(this.state.starPhone === index || (phItem.isMain === true && this.state.boolPhoneStar === false)) ? 'active' : ''} person-info-box__tools-star ver-top-box sprite toggle-className-active`}></button>
             </td>
         </tr>
         )
@@ -208,6 +223,7 @@ class ContactsEdit extends Component {
                 <td className="editable-table__select-row">
                     <div className="form-box form-box--large-bottom-margin pr">
                         <select
+                        value={emItem.typeId}
                         onChange={this.changeEmailType(index)}
                         className="_required" 
                         id="id_email-create-0-type" 
@@ -220,15 +236,11 @@ class ContactsEdit extends Component {
                 <td className="editable-table__input-row">
                 <div className="form-box form-box--large-bottom-margin pr">
                         <input 
-                        className="_required" 
-                        id="id_email-create-0-email" 
-                        maxLength="254" 
-                        name="email-create-0-email" 
+                        className="_required"
                         placeholder={`Email number #${index + 1}`}
                         value={emItem.email}
                         onChange={this.changeEmailName(index)}
-                        type="email" 
-                        required=""/>
+                        type="email"/>
                         <button
                         onClick={this.removeEmailValue(index)}
                         className="remove-value remove-value--gray sprite delete-input-text hover-active-opacity" 
