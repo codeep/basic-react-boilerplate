@@ -72,7 +72,7 @@ class ContactsDetails extends Component {
           <span className="call-log-person-item__tool fs18 _phone-number-type">Home</span>
           <span className="call-log-person-item__email fs18 search number _phone-number-value">{value.number}</span>
           <button data-toggle="modal" data-target="#phoneId" className="call-log-letter-btn ver-top-box sprite-b center-center-before pr trans-background message-icon _send-sms" type="button"></button>
-          <button type="button" className="person-info-box__tools-star ver-top-box sprite  active  _is-main"></button>
+          <button type="button" className="person-info-box__tools-star ver-top-box sprite    _is-main"></button>
         </div>
       </span>
       )
