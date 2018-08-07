@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 
+
 class ContactsEdit extends Component {
     state = {
         phone_changes: this.props.id.phones,
@@ -22,17 +23,17 @@ class ContactsEdit extends Component {
         position: this.props.id.position,
 
         starPhone: false,
-        activePhoneId: null,
         boolPhoneStar: false,
+
+        starEmail: false,
+        boolEmailStar: false,
     }
 
     componentDidMount() {
         this.props.typesAction()
     }
 
-    componentWillReceiveProps(nextProps) {
-        this.setState({ activePhoneId: (nextProps.id.mainPhone && this.props.id.mainPhone[0].id) })
-    }
+    
       
     nameChange = (e) => {
         this.setState({ name: e.target.value})
@@ -92,15 +93,16 @@ class ContactsEdit extends Component {
             "phones": this.state.phone_changes,
             "company": this.state.company,
             "position": this.state.position,
-            "emails":this.state.emails,
+            "emails": this.state.emails,
             "addresses": [],
             "notes": this.state.notes,
         }
-        
         if(this.state.deleted.length !== 0) {
             this.state.phone_changes.push(this.state.deleted)
         }
-        this.props.editContact(data)
+        this.props.cancelEdit(false)
+        this.props.getItem(data)
+        this.props.toasterShow(true)
     }
 
 
@@ -148,10 +150,17 @@ class ContactsEdit extends Component {
         this.setState({cancleEdit: true}, this.props.cancelEdit(this.state.cancleEdit))
     }
     activeStarPhone = (item, index) => e => {
+        console.log('start')
         const starToggle = this.state.phone_changes 
         const newStarToggle = starToggle.map((phone, i) => i === index ? { ...phone, isMain: true } : { ...phone, isMain: false });
-        this.setState({ phone_changes: newStarToggle, starPhone: index, boolPhoneStar: true  });
-    };
+        this.setState({ phone_changes: newStarToggle, starPhone: index, boolPhoneStar: true  })
+    }
+
+    activeStarEmail = (item, index) => e => {
+        const starToggle = this.state.emails 
+        const newStarToggle = starToggle.map((email, i) => i === index ? { ...email, isMain: true } : { ...email, isMain: false });
+        this.setState({ emails: newStarToggle, starEmail: index, boolEmailStar: true  })
+    }
      
   render() {
     let phoneTypes = _.map(this.props.types.phoneTypes, (item, index) => {
@@ -165,6 +174,7 @@ class ContactsEdit extends Component {
         )
     })
     let contactList = _.map(this.state.phone_changes, (phItem, index) => {
+        console.log('phItem', phItem)
         return (
         <tr key ={index} className = "formset-item phone-number">
             <td>
@@ -202,11 +212,12 @@ class ContactsEdit extends Component {
                     </button>
                 </div>
             </td>
-            <td>
+            {this.state.phone_changes.length > 1 && <td>
                 <button type="button" 
-                onClick={this.activeStarPhone(phItem, index)} 
-                className={`${(this.state.starPhone === index || (phItem.isMain === true && this.state.boolPhoneStar === false)) ? 'active' : ''} person-info-box__tools-star ver-top-box sprite toggle-className-active`}></button>
-            </td>
+                onClick={this.activeStarPhone(phItem, index)}
+                className={`${(this.state.starPhone === index || (phItem.isMain === true && this.state.boolPhoneStar === false)) ? 'active' : ''} person-info-box__tools-star ver-top-box sprite toggle-className-active`}>
+                </button>
+            </td>}
         </tr>
         )
     })
@@ -247,9 +258,13 @@ class ContactsEdit extends Component {
                         type="button"></button>
                     </div>
                 </td>
-                <td>
-                    <button type="button" className="person-info-box__tools-star ver-top-box sprite toggle-className-active"></button>
-                </td>
+                {this.state.emails.length > 1 && <td>
+                    <button
+                    onClick={this.activeStarEmail(emItem, index)} 
+                    type="button"
+                    className={`${(this.state.starEmail === index || (emItem.isMain === true && this.state.boolEmailStar === false)) ? 'active' : ''} person-info-box__tools-star ver-top-box sprite toggle-className-active`}>
+                    </button>
+                </td>}
                 <td className="undo dn">
                     <span className="_formset-undo-link" role="link" aria-label="Cancel">Cancel</span>
                 </td>

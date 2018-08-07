@@ -1,6 +1,6 @@
 import {Http} from './requests'
 
-export const consts = {  
+export const constsEdit = {  
     EDIT_CONTACT: 'EDIT_CONTACT',
 }
 
@@ -11,7 +11,8 @@ export default function editContact(data) {
         .then((response) => {
             dispatch({
                 type: 'EDIT_CONTACT',
-                payload: response.data
+                payload: response.data,
+                status: response.status
             })
         })
         .catch((err) => {

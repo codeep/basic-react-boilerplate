@@ -24,16 +24,15 @@ class ContactsDetails extends Component {
       { value: 'anna', label:  <div><img src="http://prod.mcontrol.com/a_get_contact_photo/64_14991.jpg/" width="24px" height="24px" />  <span>Anna</span></div> }
     ],
     value: undefined,
-    types: [
-      {
-        1: 'Home',
-        2: 'Work',
-        3: 'Other',
-        4: 'Mobile',
-        5: 'Unknown'
-      }
-    ]
+    phone_changes: this.props.id.phones,
+    starPhone: false,
+    boolPhoneStar: false,
   }
+
+  componentDidMount() {
+    this.props.typesAction()
+  }
+
 
   deleteContact = (e) => {
     this.props.deleteContact(this.props.deleteId)
@@ -48,11 +47,23 @@ class ContactsDetails extends Component {
 		}
   }
   
-  
+  activeStarPhone = (item, index) => e => {
+    const starToggle = this.state.phone_changes 
+    const newStarToggle = starToggle.map((phone, i) => i === index ? { ...phone, isMain: true } : { ...phone, isMain: false });
+    this.setState({ phone_changes: newStarToggle, starPhone: index, boolPhoneStar: true  })
+    let data = {
+      "contact_id": this.props.deleteId,
+      "phone_id": item.id
+    }
+    console.log('TRU', this.state.boolPhoneStar)
+    this.props.getPhones(newStarToggle)
+    this.props.mainPhoneStar(data)
+  }
 
   render() {
     const { atTop, multi, multiValue, options, value } = this.state
     const id = this.props.id
+    
     const emails = _.map(id.emails, (value, index) => {
       return (
         <span key={index}>
@@ -66,13 +77,18 @@ class ContactsDetails extends Component {
       )
     })
     const phones = _.map(id.phones, (value, index) => {
+    let phoneName = _.find(this.props.types.phoneTypes, item => item.id === value.typeId)
       return (
       <span key={index}>
         <div className="call-log-person-item__inner-block _phone-numbers-wrapper">
-          <span className="call-log-person-item__tool fs18 _phone-number-type">Home</span>
+          <span className="call-log-person-item__tool fs18 _phone-number-type">{phoneName && phoneName.name}</span>
           <span className="call-log-person-item__email fs18 search number _phone-number-value">{value.number}</span>
           <button data-toggle="modal" data-target="#phoneId" className="call-log-letter-btn ver-top-box sprite-b center-center-before pr trans-background message-icon _send-sms" type="button"></button>
-          <button type="button" className="person-info-box__tools-star ver-top-box sprite    _is-main"></button>
+          {id.phones.length > 1 && <button 
+          type="button"
+          onClick={this.activeStarPhone(value, index)}
+          className={`${(this.state.starPhone === index || (value.isMain === true && this.state.boolPhoneStar === false)) ? 'active' : ''} person-info-box__tools-star ver-top-box sprite _is-main`}> 
+          </button>}
         </div>
       </span>
       )
@@ -138,28 +154,30 @@ class ContactsDetails extends Component {
           <div className="call-log-person-box__position italic search">{this.props.id.position}</div>
           <table className="call-log-person-info">
             <tbody>
-              <tr className="_contact-phone-item-wrapper">
+              {phones.length !== 0 && <tr className="_contact-phone-item-wrapper">
                 <td className="call-log-person-item font-bold fs18">Phone number</td>
                 <td className="call-log-person-item">
                   {phones}
                 </td>
-              </tr>
-              <tr>
+              </tr>}
+              {emails.length !== 0 && <tr>
                 <td className="call-log-person-item font-bold fs18">Email address</td>
                 <td className="call-log-person-item">
                   {emails}
                 </td>
-              </tr>
-              <tr>
+              </tr>}
+              {addresses.length !== 0 && <tr>
                 <td className="call-log-person-item font-bold fs18">Address</td>
                 {addresses}
-              </tr>
-              <tr>
+              </tr>}
+              {(id.notes !== '' && id.notes !== null) && <tr>
                 <td className="call-log-person-item font-bold fs18">Notes</td>
                 <td className="call-log-person-item">
-                  <p className="call-log-person-item__email fs18 tj search _notes"></p>
+                  <p className="call-log-person-item__email fs18 tj search _notes">
+                    {id.notes}
+                  </p>
                 </td>
-              </tr>
+              </tr>}
             </tbody>
           </table>
           </div>
@@ -170,7 +188,6 @@ class ContactsDetails extends Component {
         <div className="call-log-sidebar_wrapper _contact-edit-wrapper dn"></div>
       </div>
     </aside>
-    
     )
   }
 }
