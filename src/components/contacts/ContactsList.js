@@ -31,13 +31,11 @@ class Contacts extends Component {
   }
 
   getContact = (e, value, index) => {
-    
     this.props.getItem(value)
     this.setState({tabIndex: index})
   }
 
   onKeyPressed = (e) => {
-
     let searchContact  = this.props.contacts; 
     if(this.state.sort !== '') {
       searchContact = _.orderBy(searchContact, 'name', this.state.sort);
@@ -58,7 +56,7 @@ class Contacts extends Component {
 
 
   render() {
-    let searchContact  = this.props.contacts;
+    let searchContact  = this.props.contacts
     searchContact = _.filter(searchContact, (item)=>{
       //get phones and email from array START
       let phones, emails
@@ -79,7 +77,12 @@ class Contacts extends Component {
         onKeyDown={(e) => this.onKeyPressed(e, value, index)}
         className={`${index === this.state.tabIndex ? 'active' : ''} accordion-box__title-box accordion-box__title-box--records trans-background pr clear-fix select-none  _open-contact`}
         >
-          <div className="accordion-box__avatar sprite-b pr fl"></div>
+          {/* <div className={`${value.photoName === null ? 'sprite-b' : ''} accordion-box__avatar  pr fl`}>
+            {value.photoName !== null ? <img key={index} src={require(`img/${value.photoName}`)}/> : ''}
+          </div> */}
+
+          <div className="sprite-b accordion-box__avatar  pr fl"></div>
+          
           <div className="accordion-box__right-box pr">
           <div className="table">
             <div className="table-cell">
@@ -143,12 +146,15 @@ class Contacts extends Component {
             </div>
           </div>
           <div 
-          className="aaa record-group record-group--for-contacts scroller-block _list-container"
+          className="record-group record-group--for-contacts scroller-block _list-container"
           >
             {this.props.fetch ? contactList : <div style={{display: 'flex',justifyContent:'center'}}>Loading...</div>}
           </div>
         </div> : 
         <SelectList
+        getItem={this.props.getItem}
+        searchTerm={this.state.searchTerm}
+        contacts={this.props.contacts}
         selectListToggle={this.selectListToggle}
         />}
         

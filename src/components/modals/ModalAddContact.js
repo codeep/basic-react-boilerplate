@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import * as _ from 'lodash'
 import  addContact  from '../../actions/addContact'
 import { connect } from 'react-redux'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
 const initialState = {
     phoneNumbers: [],
     emails: [],
@@ -148,6 +151,10 @@ class ModalAddContact extends Component {
         "addresses": []	
     }
     this.props.addContact(data)
+    if(this.props.addContactStatus !== 200) {
+        toast.success('New contact is created');
+        return;
+    }
   }
   
   render() {
@@ -483,6 +490,15 @@ class ModalAddContact extends Component {
                  </div> 
                  </div>
             </div>
+            <ToastContainer
+                position="top-right"
+                type="success"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                pauseOnHover
+            />
         </div>
     )}
 }

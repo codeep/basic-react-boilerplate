@@ -40,21 +40,21 @@ export default function getContacts() {
 //     }
 // }
 
-export function getprofile(id) {
-    return dispatch => {
-        const url = `https://prod.mcontrol.com/contacts/profile?id=${id}`
-        Http.get(url)
-        .then((response) => {
-            dispatch({
-                type: 'GET_ID',
-                payload: response.data
-            })
-        })
-        .catch((err) => {
-            console.log(err)
-        })
-    }
-}
+// export function getprofile(id) {
+//     return dispatch => {
+//         const url = `https://prod.mcontrol.com/contacts/profile?id=${id}`
+//         Http.get(url)
+//         .then((response) => {
+//             dispatch({
+//                 type: 'GET_ID',
+//                 payload: response.data
+//             })
+//         })
+//         .catch((err) => {
+//             console.log(err)
+//         })
+//     }
+// }
 
 // export function getprofile(id) {
 //     return async dispatch => {
